@@ -11,35 +11,35 @@ var mailurl = api.BASE_URL + "/mail/api"
 
 type MailApi mail.MailApi
 
-func  getMailApis() ([]MailApi, error){
-	entities:=[]MailApi{}
+func getMailApis() ([]MailApi, error) {
+	entities := []MailApi{}
 	resp, _ := api.Rest().Get(mailurl + "/all")
 	if resp.IsError() {
-		return entities , errors.New(resp.Status())
+		return entities, errors.New(resp.Status())
 	}
 	err := json.Unmarshal(resp.Body(), &entities)
 	if err != nil {
-		return entities ,  errors.New(resp.Status())
+		return entities, errors.New(resp.Status())
 	}
-	return entities , nil
+	return entities, nil
 
 }
 
-func getMailApi(id string ) (MailApi, error){
+func getMailApi(id string) (MailApi, error) {
 	entity := MailApi{}
 	resp, _ := api.Rest().Get(mailurl + "/get/" + id)
 	if resp.IsError() {
-		return entity , errors.New(resp.Status())
+		return entity, errors.New(resp.Status())
 	}
 	err := json.Unmarshal(resp.Body(), &entity)
 	if err != nil {
-		return entity ,  errors.New(resp.Status())
+		return entity, errors.New(resp.Status())
 	}
-	return entity , nil
+	return entity, nil
 
 }
 
-func createMailApi(MailApi MailApi ) (bool, error){
+func createMailApi(MailApi MailApi) (bool, error) {
 	resp, _ := api.Rest().
 		SetBody(MailApi).
 		Post(mailurl + "/create")
@@ -50,7 +50,7 @@ func createMailApi(MailApi MailApi ) (bool, error){
 	return true, nil
 
 }
-func updateMailApi(MailApi MailApi ) (bool, error){
+func updateMailApi(MailApi MailApi) (bool, error) {
 	resp, _ := api.Rest().
 		SetBody(MailApi).
 		Post(mailurl + "/update")
@@ -62,7 +62,7 @@ func updateMailApi(MailApi MailApi ) (bool, error){
 
 }
 
-func deleteMailApi(MailApi MailApi ) (bool, error){
+func deleteMailApi(MailApi MailApi) (bool, error) {
 	resp, _ := api.Rest().
 		SetBody(MailApi).
 		Post(mailurl + "/delete")

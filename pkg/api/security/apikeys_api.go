@@ -4,70 +4,68 @@ import (
 	"encoding/json"
 	"errors"
 	"users/pkg/api"
-	"users/pkg/domain/mail"
+	"users/pkg/domain/security"
 )
 
-type Entity mail.MailApi
+const apiurl = api.BASE_URL + "/security"
 
-func  getEntities() ([]Entity, error){
-	roles:=[]Role{}
-	resp, _ := api.Rest().Get(url + "/all")
+type ApiKeys security.ApiKeys
+
+func getApiKeys() ([]ApiKeys, error) {
+	apikeys := []ApiKeys{}
+	resp, _ := api.Rest().Get(apiurl + "/all")
 	if resp.IsError() {
-		return roles , errors.New(resp.Status())
+		return apikeys, errors.New(resp.Status())
 	}
-	err := json.Unmarshal(resp.Body(), &roles)
+	err := json.Unmarshal(resp.Body(), &apikeys)
 	if err != nil {
-		return roles ,  errors.New(resp.Status())
+		return apikeys, errors.New(resp.Status())
 	}
-	return roles , nil
+	return apikeys, nil
 
 }
 
-func getEntity(entitId string ) (Entity, error){
-	role := Role{}
-	resp, _ := api.Rest().Get(url + "/get/" + id)
+func getApiKey(id string) (ApiKeys, error) {
+	apikey := ApiKeys{}
+	resp, _ := api.Rest().Get(apiurl + "/get/" + id)
 	if resp.IsError() {
-		return role , errors.New(resp.Status())
+		return apikey, errors.New(resp.Status())
 	}
-	err := json.Unmarshal(resp.Body(), &role)
+	err := json.Unmarshal(resp.Body(), &apikey)
 	if err != nil {
-		return role ,  errors.New(resp.Status())
+		return apikey, errors.New(resp.Status())
 	}
-	return role , nil
+	return apikey, nil
 
 }
 
-func createEntity(entity Entity ) (bool, error){
+func createApiKey(entity ApiKeys) (bool, error) {
 	resp, _ := api.Rest().
 		SetBody(entity).
-		Post(url + "/create")
+		Post(apiurl + "/create")
 	if resp.IsError() {
 		return false, errors.New(resp.Status())
 	}
-
 	return true, nil
 
 }
-func updateEntity(entity Entity ) (bool, error){
+func updateApiKey(entity ApiKeys) (bool, error) {
 	resp, _ := api.Rest().
 		SetBody(entity).
-		Post(url + "/create")
+		Post(apiurl + "/update")
 	if resp.IsError() {
 		return false, errors.New(resp.Status())
 	}
-
 	return true, nil
 
 }
 
-func deleteEntity(entity Entity ) (bool, error){
+func deleteApiKey(entity ApiKeys) (bool, error) {
 	resp, _ := api.Rest().
 		SetBody(entity).
-		Post(url + "/create")
+		Post(apiurl + "/delete")
 	if resp.IsError() {
 		return false, errors.New(resp.Status())
 	}
-
 	return true, nil
-
 }

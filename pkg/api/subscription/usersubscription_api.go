@@ -4,42 +4,42 @@ import (
 	"encoding/json"
 	"errors"
 	"users/pkg/api"
-	"users/pkg/domain/mail"
+	"users/pkg/domain/subscription"
 )
-const url = api.BASE_URL + "/roles"
 
+const url = api.BASE_URL + "/subscriptions/user"
 
-type Entity mail.MailApi
+type UserSubscriptions subscription.UserSubscriptions
 
-func  getEntities() ([]Entity, error){
-	roles:=[]Role{}
+func getUserSubscriptions() ([]UserSubscriptions, error) {
+	userSubscriptions := []UserSubscriptions{}
 	resp, _ := api.Rest().Get(url + "/all")
 	if resp.IsError() {
-		return roles , errors.New(resp.Status())
+		return userSubscriptions, errors.New(resp.Status())
 	}
-	err := json.Unmarshal(resp.Body(), &roles)
+	err := json.Unmarshal(resp.Body(), &userSubscriptions)
 	if err != nil {
-		return roles ,  errors.New(resp.Status())
+		return userSubscriptions, errors.New(resp.Status())
 	}
-	return roles , nil
+	return userSubscriptions, nil
 
 }
 
-func getEntity(entitId string ) (Entity, error){
-	role := Role{}
+func getUserSubscription(id string) (UserSubscriptions, error) {
+	userSubscriptions := UserSubscriptions{}
 	resp, _ := api.Rest().Get(url + "/get/" + id)
 	if resp.IsError() {
-		return role , errors.New(resp.Status())
+		return userSubscriptions, errors.New(resp.Status())
 	}
-	err := json.Unmarshal(resp.Body(), &role)
+	err := json.Unmarshal(resp.Body(), &userSubscriptions)
 	if err != nil {
-		return role ,  errors.New(resp.Status())
+		return userSubscriptions, errors.New(resp.Status())
 	}
-	return role , nil
+	return userSubscriptions, nil
 
 }
 
-func createEntity(entity Entity ) (bool, error){
+func createUserSubscription(entity UserSubscriptions) (bool, error) {
 	resp, _ := api.Rest().
 		SetBody(entity).
 		Post(url + "/create")
@@ -50,10 +50,10 @@ func createEntity(entity Entity ) (bool, error){
 	return true, nil
 
 }
-func updateEntity(entity Entity ) (bool, error){
+func updateUserSubscription(entity UserSubscriptions) (bool, error) {
 	resp, _ := api.Rest().
 		SetBody(entity).
-		Post(url + "/create")
+		Post(url + "/update")
 	if resp.IsError() {
 		return false, errors.New(resp.Status())
 	}
@@ -62,10 +62,10 @@ func updateEntity(entity Entity ) (bool, error){
 
 }
 
-func deleteEntity(entity Entity ) (bool, error){
+func deleteUserSubscription(entity UserSubscriptions) (bool, error) {
 	resp, _ := api.Rest().
 		SetBody(entity).
-		Post(url + "/create")
+		Post(url + "/delete")
 	if resp.IsError() {
 		return false, errors.New(resp.Status())
 	}

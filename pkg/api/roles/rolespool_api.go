@@ -4,49 +4,55 @@ import (
 	"encoding/json"
 	"errors"
 	"users/pkg/api"
-	"users/pkg/domain/mail"
+	"users/pkg/domain/roles"
 )
 
+const rolesurl = api.BASE_URL + "/roles/pool"
 
+type RolesPool roles.RolesPool
 
-const url = api.BASE_URL + "/roles"
-
-type Entity mail.MailApi
-
-func  getEntities() ([]Entity, error){
-
-}
-
-func getEntity(entitId string ) (Entity, error){
-	role := Role{}
-	resp, _ := api.Rest().Get(url + "/get/" + id)
+func getRolespools() ([]RolesPool, error) {
+	entities := []RolesPool{}
+	resp, _ := api.Rest().Get(rolesurl + "/all")
 	if resp.IsError() {
-		return role , errors.New(resp.Status())
+		return entities, errors.New(resp.Status())
 	}
-	err := json.Unmarshal(resp.Body(), &role)
+	err := json.Unmarshal(resp.Body(), &entities)
 	if err != nil {
-		return role ,  errors.New(resp.Status())
+		return entities, errors.New(resp.Status())
 	}
-	return role , nil
+	return entities, nil
+}
+
+func getRolespool(id string) (RolesPool, error) {
+	rolespool := RolesPool{}
+	resp, _ := api.Rest().Get(rolesurl + "/get/" + id)
+	if resp.IsError() {
+		return rolespool, errors.New(resp.Status())
+	}
+	err := json.Unmarshal(resp.Body(), &rolespool)
+	if err != nil {
+		return rolespool, errors.New(resp.Status())
+	}
+	return rolespool, nil
 
 }
 
-func createEntity(entity Entity ) (bool, error){
+func createRolespool(entity RolesPool) (bool, error) {
 	resp, _ := api.Rest().
 		SetBody(entity).
-		Post(url + "/create")
+		Post(rolesurl + "/create")
 	if resp.IsError() {
 		return false, errors.New(resp.Status())
 	}
 
 	return true, nil
 
-
 }
-func updateEntity(entity Entity ) (bool, error){
+func updateRolespool(entity RolesPool) (bool, error) {
 	resp, _ := api.Rest().
 		SetBody(entity).
-		Post(url + "/create")
+		Post(rolesurl + "/update")
 	if resp.IsError() {
 		return false, errors.New(resp.Status())
 	}
@@ -55,10 +61,10 @@ func updateEntity(entity Entity ) (bool, error){
 
 }
 
-func deleteEntity(entity Entity ) (bool, error){
+func deleteRolespool(entity RolesPool) (bool, error) {
 	resp, _ := api.Rest().
 		SetBody(entity).
-		Post(url + "/create")
+		Post(rolesurl + "/delete")
 	if resp.IsError() {
 		return false, errors.New(resp.Status())
 	}

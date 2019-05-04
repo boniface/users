@@ -4,42 +4,42 @@ import (
 	"encoding/json"
 	"errors"
 	"users/pkg/api"
-	"users/pkg/domain/mail"
+	"users/pkg/domain/sites"
 )
 
-const url = api.BASE_URL + "/roles"
+const url = api.BASE_URL + "/sites"
 
-type Entity mail.MailApi
+type Site sites.Site
 
-func  getEntities() ([]Entity, error){
-	roles:=[]Role{}
+func getSites() ([]Site, error) {
+	entities := []Site{}
 	resp, _ := api.Rest().Get(url + "/all")
 	if resp.IsError() {
-		return roles , errors.New(resp.Status())
+		return entities, errors.New(resp.Status())
 	}
-	err := json.Unmarshal(resp.Body(), &roles)
+	err := json.Unmarshal(resp.Body(), &entities)
 	if err != nil {
-		return roles ,  errors.New(resp.Status())
+		return entities, errors.New(resp.Status())
 	}
-	return roles , nil
+	return entities, nil
 
 }
 
-func getEntity(entitId string ) (Entity, error){
-	role := Role{}
+func getSite(id string) (Site, error) {
+	role := Site{}
 	resp, _ := api.Rest().Get(url + "/get/" + id)
 	if resp.IsError() {
-		return role , errors.New(resp.Status())
+		return role, errors.New(resp.Status())
 	}
 	err := json.Unmarshal(resp.Body(), &role)
 	if err != nil {
-		return role ,  errors.New(resp.Status())
+		return role, errors.New(resp.Status())
 	}
-	return role , nil
+	return role, nil
 
 }
 
-func createEntity(entity Entity ) (bool, error){
+func createSite(entity Site) (bool, error) {
 	resp, _ := api.Rest().
 		SetBody(entity).
 		Post(url + "/create")
@@ -50,10 +50,10 @@ func createEntity(entity Entity ) (bool, error){
 	return true, nil
 
 }
-func updateEntity(entity Entity ) (bool, error){
+func updateSite(entity Site) (bool, error) {
 	resp, _ := api.Rest().
 		SetBody(entity).
-		Post(url + "/create")
+		Post(url + "/update")
 	if resp.IsError() {
 		return false, errors.New(resp.Status())
 	}
@@ -62,11 +62,11 @@ func updateEntity(entity Entity ) (bool, error){
 
 }
 
-func deleteEntity(entity Entity ) (bool, error){
+func deleteSite(entity Site) (bool, error) {
 
 	resp, _ := api.Rest().
 		SetBody(entity).
-		Post(url + "/create")
+		Post(url + "/delete")
 	if resp.IsError() {
 		return false, errors.New(resp.Status())
 	}

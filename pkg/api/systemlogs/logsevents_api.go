@@ -4,43 +4,42 @@ import (
 	"encoding/json"
 	"errors"
 	"users/pkg/api"
-	"users/pkg/domain/mail"
+	"users/pkg/domain/systemlogs"
 )
 
 const url = api.BASE_URL + "/roles"
 
-type Entity mail.MailApi
+type LogEvent systemlogs.LogEvent
 
-func  getEntities() ([]Entity, error){
-	roles:=[]Role{}
+func getLogEvents() ([]LogEvent, error) {
+	roles := []LogEvent{}
 	resp, _ := api.Rest().Get(url + "/all")
 	if resp.IsError() {
-		return roles , errors.New(resp.Status())
+		return roles, errors.New(resp.Status())
 	}
 	err := json.Unmarshal(resp.Body(), &roles)
 	if err != nil {
-		return roles ,  errors.New(resp.Status())
+		return roles, errors.New(resp.Status())
 	}
-	return roles , nil
+	return roles, nil
 
 }
 
-func getEntity(entitId string ) (Entity, error){
+func getLogEvent(id string) (LogEvent, error) {
 
-	role := Role{}
+	logEvent := LogEvent{}
 	resp, _ := api.Rest().Get(url + "/get/" + id)
 	if resp.IsError() {
-		return role , errors.New(resp.Status())
+		return logEvent, errors.New(resp.Status())
 	}
-	err := json.Unmarshal(resp.Body(), &role)
+	err := json.Unmarshal(resp.Body(), &logEvent)
 	if err != nil {
-		return role ,  errors.New(resp.Status())
+		return logEvent, errors.New(resp.Status())
 	}
-	return role , nil
-
+	return logEvent, nil
 }
 
-func createEntity(entity Entity ) (bool, error){
+func createLogEvent(entity LogEvent) (bool, error) {
 	resp, _ := api.Rest().
 		SetBody(entity).
 		Post(url + "/create")
@@ -51,24 +50,22 @@ func createEntity(entity Entity ) (bool, error){
 	return true, nil
 
 }
-func updateEntity(entity Entity ) (bool, error){
-
+func updateLogEvent(entity LogEvent) (bool, error) {
 	resp, _ := api.Rest().
 		SetBody(entity).
-		Post(url + "/create")
+		Post(url + "/update")
 	if resp.IsError() {
 		return false, errors.New(resp.Status())
 	}
-
 	return true, nil
 
 }
 
-func deleteEntity(entity Entity ) (bool, error){
+func deleteLogEvent(entity LogEvent) (bool, error) {
 
 	resp, _ := api.Rest().
 		SetBody(entity).
-		Post(url + "/create")
+		Post(url + "/delete")
 	if resp.IsError() {
 		return false, errors.New(resp.Status())
 	}

@@ -4,45 +4,45 @@ import (
 	"encoding/json"
 	"errors"
 	"users/pkg/api"
-	"users/pkg/domain/mail"
+	"users/pkg/domain/subscription"
 )
 
-const url = api.BASE_URL + "/roles"
+const siteSubs = api.BASE_URL + "/subscriptions"
 
-type Entity mail.MailApi
+type SiteSubscription subscription.SiteSubscription
 
-func  getEntities() ([]Entity, error){
-	roles:=[]Role{}
-	resp, _ := api.Rest().Get(url + "/all")
+func getSiteSubscriptions() ([]SiteSubscription, error) {
+	subscriptions := []SiteSubscription{}
+	resp, _ := api.Rest().Get(siteSubs + "/all")
 	if resp.IsError() {
-		return roles , errors.New(resp.Status())
+		return subscriptions, errors.New(resp.Status())
 	}
-	err := json.Unmarshal(resp.Body(), &roles)
+	err := json.Unmarshal(resp.Body(), &subscriptions)
 	if err != nil {
-		return roles ,  errors.New(resp.Status())
+		return subscriptions, errors.New(resp.Status())
 	}
-	return roles , nil
+	return subscriptions, nil
 
 }
 
-func getEntity(entitId string ) (Entity, error){
-	role := Role{}
-	resp, _ := api.Rest().Get(url + "/get/" + id)
+func getSiteSubscription(id string) (SiteSubscription, error) {
+	subscription := SiteSubscription{}
+	resp, _ := api.Rest().Get(siteSubs + "/get/" + id)
 	if resp.IsError() {
-		return role , errors.New(resp.Status())
+		return subscription, errors.New(resp.Status())
 	}
-	err := json.Unmarshal(resp.Body(), &role)
+	err := json.Unmarshal(resp.Body(), &subscription)
 	if err != nil {
-		return role ,  errors.New(resp.Status())
+		return subscription, errors.New(resp.Status())
 	}
-	return role , nil
+	return subscription, nil
 
 }
 
-func createEntity(entity Entity ) (bool, error){
+func createSiteSubscription(entity SiteSubscription) (bool, error) {
 	resp, _ := api.Rest().
 		SetBody(entity).
-		Post(url + "/create")
+		Post(siteSubs + "/create")
 	if resp.IsError() {
 		return false, errors.New(resp.Status())
 	}
@@ -50,10 +50,10 @@ func createEntity(entity Entity ) (bool, error){
 	return true, nil
 
 }
-func updateEntity(entity Entity ) (bool, error){
+func updateSiteSubscription(entity SiteSubscription) (bool, error) {
 	resp, _ := api.Rest().
 		SetBody(entity).
-		Post(url + "/create")
+		Post(siteSubs + "/update")
 	if resp.IsError() {
 		return false, errors.New(resp.Status())
 	}
@@ -62,10 +62,10 @@ func updateEntity(entity Entity ) (bool, error){
 
 }
 
-func deleteEntity(entity Entity ) (bool, error){
+func deleteSiteSubscription(entity SiteSubscription) (bool, error) {
 	resp, _ := api.Rest().
 		SetBody(entity).
-		Post(url + "/create")
+		Post(siteSubs + "/delete")
 	if resp.IsError() {
 		return false, errors.New(resp.Status())
 	}

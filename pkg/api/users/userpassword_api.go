@@ -4,73 +4,64 @@ import (
 	"encoding/json"
 	"errors"
 	"users/pkg/api"
-	"users/pkg/domain/mail"
+	"users/pkg/domain/users"
 )
-const url = api.BASE_URL + "/roles"
 
+const usersurl = api.BASE_URL + "/users/pass"
 
-type Entity mail.MailApi
+type UserPassword users.UserPassword
 
-func  getEntities() ([]Entity, error){
-	roles:=[]Role{}
-	resp, _ := api.Rest().Get(url + "/all")
+func getUserPasswords() ([]UserPassword, error) {
+	userPasswords := []UserPassword{}
+	resp, _ := api.Rest().Get(usersurl + "/all")
 	if resp.IsError() {
-		return roles , errors.New(resp.Status())
+		return userPasswords, errors.New(resp.Status())
 	}
-	err := json.Unmarshal(resp.Body(), &roles)
+	err := json.Unmarshal(resp.Body(), &userPasswords)
 	if err != nil {
-		return roles ,  errors.New(resp.Status())
+		return userPasswords, errors.New(resp.Status())
 	}
-	return roles , nil
-
+	return userPasswords, nil
 }
 
-func getEntity(entitId string ) (Entity, error){
-	role := Role{}
-	resp, _ := api.Rest().Get(url + "/get/" + id)
+func getUserPassword(id string) (UserPassword, error) {
+	userPassword := UserPassword{}
+	resp, _ := api.Rest().Get(usersurl + "/get/" + id)
 	if resp.IsError() {
-		return role , errors.New(resp.Status())
+		return userPassword, errors.New(resp.Status())
 	}
-	err := json.Unmarshal(resp.Body(), &role)
+	err := json.Unmarshal(resp.Body(), &userPassword)
 	if err != nil {
-		return role ,  errors.New(resp.Status())
+		return userPassword, errors.New(resp.Status())
 	}
-	return role , nil
-
-
+	return userPassword, nil
 }
 
-func createEntity(entity Entity ) (bool, error){
+func createUserPassword(entity UserPassword) (bool, error) {
 	resp, _ := api.Rest().
 		SetBody(entity).
-		Post(url + "/create")
+		Post(usersurl + "/create")
 	if resp.IsError() {
 		return false, errors.New(resp.Status())
 	}
-
 	return true, nil
-
 }
-func updateEntity(entity Entity ) (bool, error){
+func updateUserPassword(entity UserPassword) (bool, error) {
 	resp, _ := api.Rest().
 		SetBody(entity).
-		Post(url + "/create")
+		Post(usersurl + "/update")
 	if resp.IsError() {
 		return false, errors.New(resp.Status())
 	}
-
 	return true, nil
-
 }
 
-func deleteEntity(entity Entity ) (bool, error){
+func deleteUserPassword(entity UserPassword) (bool, error) {
 	resp, _ := api.Rest().
 		SetBody(entity).
-		Post(url + "/create")
+		Post(usersurl + "/delete")
 	if resp.IsError() {
 		return false, errors.New(resp.Status())
 	}
-
 	return true, nil
-
 }
