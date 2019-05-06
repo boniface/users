@@ -14,8 +14,8 @@ func main() {
 	addr := flag.String("addr", ":4000", "HTTP network address")
 	flag.Parse()
 	env := &config.Env{
-		ErrorLog: log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime),
-		InfoLog:  log.New(os.Stderr, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile),
+		ErrorLog: log.New(os.Stdout, "ERROR\t", log.Ldate|log.Ltime),
+		InfoLog:  log.New(os.Stderr, "INFO\t", log.Ldate|log.Ltime|log.Lshortfile),
 	}
 
 	srv := &http.Server{
