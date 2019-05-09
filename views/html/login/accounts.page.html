@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,9 +39,10 @@
                 height: 650px;
             }
         }
+
         @media (min-width: 800px) and (max-width: 850px) {
             .navbar:not(.top-nav-collapse) {
-                background: #1C2331!important;
+                background: #1C2331 !important;
             }
         }
     </style>
@@ -55,7 +55,8 @@
 <!-- Navbar -->
 
 <!-- Full Page Intro -->
-<div class="view full-page-intro" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/78.jpg'); background-repeat: no-repeat; background-size: cover;">
+<div class="view full-page-intro"
+     style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/78.jpg'); background-repeat: no-repeat; background-size: cover;">
 
     <!-- Mask & flexbox options-->
     <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
@@ -84,11 +85,30 @@
 
                     <!--Card-->
                     <div class="card">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Acount 01</li>
-                            <li class="list-group-item">Account 02</li>
-                            <li class="list-group-item">Acount 03</li>
-                        </ul>
+
+
+                        <table class="table">
+                            <thead class="blue-gradient white-text">
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Account</th>
+                                <th scope="col">Site Name</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {{range $index,$value := .}}
+                                <tr>
+                                    <th scope="row">{{$index}}</th>
+                                    <td>{{.Email}}</td>
+                                    <td>{{.SiteName}}</td>
+                                    <td><a href="password?id={{ .UserId}}" class="btn purple-gradient btn-sm" role="button">Login</a></td>
+                                </tr>
+                            {{end}}
+                            </tbody>
+                        </table>
+
                     </div>
                     <!--/.Card-->
 
