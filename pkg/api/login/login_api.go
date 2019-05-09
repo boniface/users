@@ -10,8 +10,8 @@ import (
 	"users/pkg/domain/users"
 )
 
-
 const roleurl = api.BASE_URL + "/login"
+
 type User users.User
 type MessageResponse mail.MessageResponse
 type UserGeneratedToken security.UserGeneratedToken
@@ -19,21 +19,21 @@ type Account users.Account
 type Profile login.Profile
 type LoginCredential login.LoginCredential
 
-func resetPasswordRequest(resetKey string) (MessageResponse, error) {
+func ResetPasswordRequest(resetKey string) (MessageResponse, error) {
 	entity := MessageResponse{}
-	resp, _ := api.Rest().Get(roleurl + "/get/" + resetKey)
+	resp, _ := api.Rest().Get(roleurl + "/reset/" + resetKey)
 	if resp.IsError() {
-		return entity , errors.New(resp.Status())
+		return entity, errors.New(resp.Status())
 	}
 	err := json.Unmarshal(resp.Body(), &entity)
 	if err != nil {
-		return entity ,  errors.New(resp.Status())
+		return entity, errors.New(resp.Status())
 	}
-	return entity , nil
+	return entity, nil
 
 }
 
-func isUserRegistered(user User) (bool, error) {
+func IsUserRegistered(user User) (bool, error) {
 	resp, _ := api.Rest().
 		SetBody(user).
 		Post(roleurl + "/registered")
@@ -45,53 +45,53 @@ func isUserRegistered(user User) (bool, error) {
 
 }
 
-func forgotPassword(profile Profile) (MessageResponse, error) {
+func ForgotPassword(profile Profile) (MessageResponse, error) {
 	entity := MessageResponse{}
 	resp, _ := api.Rest().
 		SetBody(profile).
 		Post(roleurl + "/forgotpassword")
 	if resp.IsError() {
-		return entity , errors.New(resp.Status())
+		return entity, errors.New(resp.Status())
 	}
 	err := json.Unmarshal(resp.Body(), &entity)
 	if err != nil {
-		return entity ,  errors.New(resp.Status())
+		return entity, errors.New(resp.Status())
 	}
-	return entity , nil
+	return entity, nil
 
 }
 
-func getUserAccounts(email string) ([] Account, error) {
-	entities:=[]Account{}
-	resp, _ := api.Rest().Get(roleurl + "/get/"+email)
+func GetUserAccounts(email string) ([]Account, error) {
+	entities := []Account{}
+	resp, _ := api.Rest().Get(roleurl + "/user/" + email)
 	if resp.IsError() {
-		return entities , errors.New(resp.Status())
+		return entities, errors.New(resp.Status())
 	}
 	err := json.Unmarshal(resp.Body(), &entities)
 	if err != nil {
-		return entities ,  errors.New(resp.Status())
+		return entities, errors.New(resp.Status())
 	}
-	return entities , nil
+	return entities, nil
 
 }
 
-func getLoginToken(loginCredential LoginCredential) (UserGeneratedToken, error) {
+func GetLoginToken(loginCredential LoginCredential) (UserGeneratedToken, error) {
 	entity := UserGeneratedToken{}
 	resp, _ := api.Rest().
 		SetBody(loginCredential).
 		Post(roleurl + "/getlogintoken")
 	if resp.IsError() {
-		return entity , errors.New(resp.Status())
+		return entity, errors.New(resp.Status())
 	}
 	err := json.Unmarshal(resp.Body(), &entity)
 	if err != nil {
-		return entity ,  errors.New(resp.Status())
+		return entity, errors.New(resp.Status())
 	}
-	return entity , nil
+	return entity, nil
 
 }
 
-func isUserLoggedIn(user User) (bool, error) {
+func IsUserLoggedIn(user User) (bool, error) {
 	// GET THIS FROM SESSION
 	//resp, _ := api.Rest().
 	//	SetBody(entity).
@@ -104,7 +104,7 @@ func isUserLoggedIn(user User) (bool, error) {
 
 }
 
-func getUserRole(user User) (string, error) {
+func GetUserRole(user User) (string, error) {
 	// GET THIS FROM THE SESSION
 
 	//role := Role{}
@@ -116,11 +116,11 @@ func getUserRole(user User) (string, error) {
 	//if err != nil {
 	//	return role ,  errors.New(resp.Status())
 	//}
-	return "" , nil
+	return "", nil
 
 }
 
-func logout() (bool, error) {
+func Logout() (bool, error) {
 	// INVALIDATE THE SESSION
 
 	//resp, _ := api.Rest().
