@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"users/cmd/config"
 	"users/cmd/web/controllers/login"
+	"users/cmd/web/controllers/mail"
 )
 
 func Controllers(env *config.Env) http.Handler {
@@ -16,6 +17,7 @@ func Controllers(env *config.Env) http.Handler {
 
 	mux.Handle("/", login.Home(env))
 	mux.Mount("/login", login.Login(env))
+	mux.Mount("/mail", mail.Mail(env))
 
 	fileServer := http.FileServer(http.Dir("./views/assets"))
 	// Use the mux.Handle() function to register the file server as the handler for

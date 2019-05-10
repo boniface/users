@@ -9,7 +9,7 @@ import (
 	"users/pkg/api/login"
 )
 
-// Rout Path
+// Route Path
 func Login(app *config.Env) http.Handler {
 	r := chi.NewRouter()
 	r.Get("/", LoginHandler(app))
