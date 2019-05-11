@@ -3,6 +3,7 @@ module users
 go 1.12
 
 require (
+	github.com/alexedwards/scs/v2 v2.0.0 // indirect
 	github.com/go-chi/chi v4.0.2+incompatible
 	github.com/stretchr/testify v1.3.0
 	golang.org/x/crypto v0.0.0-20190426145343-a29dc8fdc734 // indirect
