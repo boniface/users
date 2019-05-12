@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -11,11 +12,18 @@ import (
 
 func main() {
 
+	// Initialize a new template cache...
+	templateCache, err := config.NewTemplateCache("./ui/html/")
+	if err != nil {
+		fmt.Println(" There is a Error ", err)
+	}
+
 	addr := flag.String("addr", ":4000", "HTTP network address")
 	flag.Parse()
 	env := &config.Env{
-		ErrorLog: log.New(os.Stdout, "ERROR\t", log.Ldate|log.Ltime),
-		InfoLog:  log.New(os.Stderr, "INFO\t", log.Ldate|log.Ltime|log.Lshortfile),
+		ErrorLog:      log.New(os.Stdout, "ERROR\t", log.Ldate|log.Ltime),
+		InfoLog:       log.New(os.Stderr, "INFO\t", log.Ldate|log.Ltime|log.Lshortfile),
+		TemplateCache: templateCache,
 	}
 
 	srv := &http.Server{
@@ -26,7 +34,7 @@ func main() {
 
 	env.InfoLog.Printf("Starting server on %s", *addr)
 	// Call the ListenAndServe() method on our new http.Server struct.
-	err := srv.ListenAndServe()
-	env.ErrorLog.Fatal(err)
+	error := srv.ListenAndServe()
+	env.ErrorLog.Fatal(error)
 
 }

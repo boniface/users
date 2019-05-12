@@ -24,11 +24,13 @@ func IndexHanler(app *config.Env) http.HandlerFunc {
 		ts, err := template.ParseFiles(files...)
 		if err != nil {
 			app.ErrorLog.Println(err.Error())
+
 			return
 		}
 		err = ts.Execute(w, nil)
 		if err != nil {
 			app.ErrorLog.Println(err.Error())
+
 		}
 	}
 }

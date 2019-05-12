@@ -115,7 +115,8 @@
                 <i class="fas fa-user mr-3"></i>Users</a>
             <a href="../sites/sites.page.html" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-globe mr-3"></i>Sites</a>
-            <a href="../subscriptions/subscriptions.page.html" class="list-group-item list-group-item-action waves-effect">
+            <a href="../subscriptions/subscriptions.page.html"
+               class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-map mr-3"></i>Subcriptions</a>
             <a href="../roles/roles.page.html" class="list-group-item list-group-item-action waves-effect">
                 <i class="fas fa-money-bill-alt mr-3"></i>Roles</a>
@@ -163,33 +164,39 @@
         </div>
         <!-- Heading -->
 
-        <!--Grid row-->
-        <div class="row wow fadeIn">
 
-            <!-- the table will go here-->
+        <!-- Classic tabs -->
+        <div class="classic-tabs mx-2">
 
-            <ul class="nav nav-tabs md-tabs" id="myTabMD" role="tablist">
+            <ul class="nav nav-tabs md-tabs" id="myClassicTabOrange" role="tablist">
+
                 <li class="nav-item">
-                    <a class="nav-link active" id="home-tab-md" data-toggle="tab" href="#home-md" role="tab"
-                       aria-controls="home-md"
-                       aria-selected="true">Account</a>
+                    <a class="nav-link  waves-light active show" id="profile-tab-classic-orange" data-toggle="tab"
+                       href="#profile-classic-orange"
+                       role="tab" aria-controls="profile-classic-orange" aria-selected="true"><div
+                                style="text-align: center;"><i
+                                class="fas fa-user-secret fa-2x pb-2"
+                                aria-hidden="true"></i></div><br>Default Roles From Pool </a>
+
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link " id="contact-tab-md" data-toggle="tab" href="#contact-md" role="tab"
-                       aria-controls="contact-md"
-                       aria-selected="false">User</a>
-                </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" id="contact-tab-md" data-toggle="tab" href="#contact-md" role="tab"
-                       aria-controls="contact-md"
-                       aria-selected="false">User Role</a>
+                    <a class="nav-link waves-light" id="follow-tab-classic-orange" data-toggle="tab"
+                       href="#follow-classic-orange"
+                       role="tab" aria-controls="follow-classic-orange" aria-selected="false"><div
+                                style="text-align: center;"><i
+                                class="fas fa-globe fa-2x pb-2"
+                                aria-hidden="true"></i></div><br>Custom Site Roles</a>
                 </li>
 
             </ul>
-            <div class="tab-content card pt-5" id="myTabContentMD">
-                <div class="tab-pane fade show active" id="home-md" role="tabpanel" aria-labelledby="home-tab-md">
+
+            <div class="tab-content card" id="myClassicTabContentOrange">
+                <div class="tab-pane fade active show" id="profile-classic-orange" role="tabpanel"
+                     aria-labelledby="profile-tab-classic-orange">
+                    <p></p>
+
 
                     <!-- Table with panel -->
                     <div class="card card-cascade narrower">
@@ -207,50 +214,52 @@
                                 </button>
                             </div>
 
-                            <a href="" class="white-text mx-3">Account</a>
+                            <a href="" class="white-text mx-3">Default Roles From Pool</a>
 
                             <div>
 
-                                <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2"data-toggle="modal" data-target="#basicExampleModal">
-                                    <i class="fas fa-info-circle mt-0"> Profile</i>
+                                <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2"
+                                        data-toggle="modal" data-target="#basicExampleModal">
+                                    <i class="fas fa-info-circle mt-0"> Add New</i>
                                 </button>
                             </div>
-
                         </div>
+
                         <!--/Card image-->
 
                         <div class="px-4">
-
                             <div class="table-wrapper table-bordered">
                                 <!--Table-->
                                 <table class="table table-hover mb-0">
-
                                     <!--Table head-->
                                     <thead>
                                     <tr>
-
                                         <th class="th-lg">
                                             <a>Site Id
                                                 <i class="fas fa-sort ml-1"></i>
                                             </a>
                                         </th>
+
                                         <th class="th-lg">
                                             <a href="">Email
                                                 <i class="fas fa-sort ml-1"></i>
                                             </a>
                                         </th>
+
                                         <th class="th-lg">
                                             <a href="">User Id
                                                 <i class="fas fa-sort ml-1"></i>
                                             </a>
                                         </th>
+
                                         <th class="th-lg">
                                             <a href="">Site Name
                                                 <i class="fas fa-sort ml-1"></i>
                                             </a>
                                         </th>
+
                                         <th class="th-lg">
-                                            <a href="">Options</a>
+                                            <a href="">Actions</a>
                                         </th>
                                     </tr>
                                     </thead>
@@ -273,74 +282,6 @@
                                                         class="btn btn-outline-blue btn-rounded btn-sm px-2">
                                                     <i class="far fa-trash-alt mt-0"></i>
                                                 </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                        <td>Jacob</td>
-                                        <td>
-                                            <div>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="fas fa-pencil-alt mt-0"></i>
-                                                </button>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="far fa-trash-alt mt-0"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                        <td>Larry</td>
-                                        <td>
-                                            <div>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="fas fa-pencil-alt mt-0"></i>
-                                                </button>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="far fa-trash-alt mt-0"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Paul</td>
-                                        <td>Topolski</td>
-                                        <td>@P_Topolski</td>
-                                        <td>Paul</td>
-                                        <td>
-                                            <div>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="fas fa-pencil-alt mt-0"></i>
-                                                </button>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="far fa-trash-alt mt-0"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                        <td>Larry</td>
-                                        <td>
-                                            <div>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="fas fa-pencil-alt mt-0"></i>
-                                                </button>
                                                 <button type="button"
                                                         class="btn btn-outline-blue btn-rounded btn-sm px-2">
                                                     <i class="far fa-trash-alt mt-0"></i>
@@ -353,13 +294,16 @@
                                 </table>
                                 <!--Table-->
                             </div>
-
                         </div>
-
                     </div>
                     <!-- Table with panel -->
                 </div>
-                <div class="tab-pane fade" id="profile-md" role="tabpanel" aria-labelledby="profile-tab-md">
+
+
+                <div class="tab-pane fade" id="follow-classic-orange" role="tabpanel"
+                     aria-labelledby="follow-tab-classic-orange">
+                    <p></p>
+
                     <!-- Table with panel -->
                     <div class="card card-cascade narrower">
 
@@ -376,385 +320,52 @@
                                 </button>
                             </div>
 
-                            <a href="" class="white-text mx-3">Registration</a>
+                            <a href="" class="white-text mx-3">Custom Site Roles</a>
 
                             <div>
 
-                                <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2"data-toggle="modal" data-target="#basicExampleModal">
-                                    <i class="fas fa-info-circle mt-0"> Profile</i>
+                                <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2"
+                                        data-toggle="modal" data-target="#basicExampleModal">
+                                    <i class="fas fa-info-circle mt-0"> Add New</i>
                                 </button>
                             </div>
-
                         </div>
+
                         <!--/Card image-->
 
                         <div class="px-4">
-
                             <div class="table-wrapper table-bordered">
                                 <!--Table-->
                                 <table class="table table-hover mb-0">
-
                                     <!--Table head-->
                                     <thead>
                                     <tr>
-
                                         <th class="th-lg">
-                                            <a>Email
-                                                <i class="fas fa-sort ml-1"></i>
-                                            </a>
-                                        </th>
-                                        <th class="th-lg">
-                                            <a href="">Site Id
+                                            <a>Site Id
                                                 <i class="fas fa-sort ml-1"></i>
                                             </a>
                                         </th>
 
                                         <th class="th-lg">
-                                            <a href="">Options</a>
+                                            <a href="">Email
+                                                <i class="fas fa-sort ml-1"></i>
+                                            </a>
                                         </th>
-                                    </tr>
-                                    </thead>
-                                    <!--Table head-->
-
-                                    <!--Table body-->
-                                    <tbody>
-                                    <tr>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>
-                                            <div>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="fas fa-pencil-alt mt-0"></i>
-                                                </button>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="far fa-trash-alt mt-0"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>
-                                            <div>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="fas fa-pencil-alt mt-0"></i>
-                                                </button>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="far fa-trash-alt mt-0"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-
-                                        <td>
-                                            <div>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="fas fa-pencil-alt mt-0"></i>
-                                                </button>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="far fa-trash-alt mt-0"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Paul</td>
-                                        <td>Topolski</td>
-                                        <td>
-                                            <div>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="fas fa-pencil-alt mt-0"></i>
-                                                </button>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="far fa-trash-alt mt-0"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>
-                                            <div>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="fas fa-pencil-alt mt-0"></i>
-                                                </button>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="far fa-trash-alt mt-0"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                    <!--Table body-->
-                                </table>
-                                <!--Table-->
-                            </div>
-
-                        </div>
-
-
-                    </div>
-                    <!-- Table with panel -->
-                </div>
-                <div class="tab-pane fade" id="contact-md" role="tabpanel" aria-labelledby="contact-tab-md">
-                    <!-- Table with panel -->
-                    <div class="card card-cascade narrower">
-
-                        <!--Card image-->
-                        <div
-                                class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
-
-                            <div>
-                                <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-                                    <i class="fas fa-th-large mt-0"></i>
-                                </button>
-                                <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-                                    <i class="fas fa-columns mt-0"></i>
-                                </button>
-                            </div>
-
-                            <a href="" class="white-text mx-3">User</a>
-
-                            <div>
-
-                                <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2"data-toggle="modal" data-target="#basicExampleModal">
-                                    <i class="fas fa-info-circle mt-0"> Profile</i>
-                                </button>
-                            </div>
-
-                        </div>
-                        <!--/Card image-->
-
-                        <div class="px-4">
-
-                            <div class="table-wrapper table-bordered">
-                                <!--Table-->
-                                <table class="table table-hover mb-0">
-
-                                    <!--Table head-->
-                                    <thead>
-                                    <tr>
-
-
 
                                         <th class="th-lg">
                                             <a href="">User Id
                                                 <i class="fas fa-sort ml-1"></i>
                                             </a>
                                         </th>
+
                                         <th class="th-lg">
-                                            <a href="">Screen Name
-                                                <i class="fas fa-sort ml-1"></i>
-                                            </a>
-                                        </th>
-                                        <th class="th-lg">
-                                            <a href="">FirstName
-                                                <i class="fas fa-sort ml-1"></i>
-                                            </a>
-                                        </th>
-                                        <th class="th-lg">
-                                            <a href="">LastName
+                                            <a href="">Site Name
                                                 <i class="fas fa-sort ml-1"></i>
                                             </a>
                                         </th>
 
-                                        </th><th class="th-lg">
-                                            <a href="">Date Created
-                                                <i class="fas fa-sort ml-1"></i>
-                                            </a>
-                                        </th>
                                         <th class="th-lg">
-                                            <a href="">Options</a>
-                                        </th>
-                                    </tr>
-                                    </thead>
-                                    <!--Table head-->
-
-                                    <!--Table body-->
-                                    <tbody>
-                                    <tr>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td>Mark</td>
-                                        <td>Mark</td>
-                                        <td>
-                                            <div>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="fas fa-pencil-alt mt-0"></i>
-                                                </button>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="far fa-trash-alt mt-0"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                        <td>Jacob</td>
-                                        <td>
-                                            <div>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="fas fa-pencil-alt mt-0"></i>
-                                                </button>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="far fa-trash-alt mt-0"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>@fat</td>
-                                        <td>@fat</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                        <td>Larry</td>
-                                        <td>
-                                            <div>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="fas fa-pencil-alt mt-0"></i>
-                                                </button>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="far fa-trash-alt mt-0"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>@fat</td>
-                                        <td>@fat</td>
-                                        <td>@fat</td>
-                                        <td>@P_Topolski</td>
-                                        <td>Paul</td>
-                                        <td>
-                                            <div>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="fas fa-pencil-alt mt-0"></i>
-                                                </button>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="far fa-trash-alt mt-0"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                        <td>Larry</td>
-                                        <td>@fat</td>
-                                        <td>
-                                            <div>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="fas fa-pencil-alt mt-0"></i>
-                                                </button>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="far fa-trash-alt mt-0"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                    <!--Table body-->
-                                </table>
-                                <!--Table-->
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <!-- Table with panel -->
-                </div>
-
-                <div class="tab-pane fade" id="contact-md" role="tabpanel" aria-labelledby="contact-tab-md">
-                    <!-- Table with panel -->
-                    <div class="card card-cascade narrower">
-
-                        <!--Card image-->
-                        <div
-                                class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
-
-                            <div>
-                                <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-                                    <i class="fas fa-th-large mt-0"></i>
-                                </button>
-                                <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-                                    <i class="fas fa-columns mt-0"></i>
-                                </button>
-                            </div>
-
-                            <a href="" class="white-text mx-3">User Password</a>
-
-                            <div>
-
-                                <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2"data-toggle="modal" data-target="#basicExampleModal">
-                                    <i class="fas fa-info-circle mt-0"> Profile</i>
-                                </button>
-                            </div>
-
-                        </div>
-                        <!--/Card image-->
-
-                        <div class="px-4">
-
-                            <div class="table-wrapper table-bordered">
-                                <!--Table-->
-                                <table class="table table-hover mb-0">
-
-                                    <!--Table head-->
-                                    <thead>
-                                    <tr>
-
-                                        <th class="th-lg">
-                                            <a>First Name
-                                                <i class="fas fa-sort ml-1"></i>
-                                            </a>
-                                        </th>
-                                        <th class="th-lg">
-                                            <a href="">Last Name
-                                                <i class="fas fa-sort ml-1"></i>
-                                            </a>
-                                        </th>
-                                        <th class="th-lg">
-                                            <a href="">Username
-                                                <i class="fas fa-sort ml-1"></i>
-                                            </a>
-                                        </th>
-                                        <th class="th-lg">
-                                            <a href="">Username
-                                                <i class="fas fa-sort ml-1"></i>
-                                            </a>
-                                        </th>
-                                        <th class="th-lg">
-                                            <a href="">Options</a>
+                                            <a href="">Actions</a>
                                         </th>
                                     </tr>
                                     </thead>
@@ -777,74 +388,6 @@
                                                         class="btn btn-outline-blue btn-rounded btn-sm px-2">
                                                     <i class="far fa-trash-alt mt-0"></i>
                                                 </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                        <td>Jacob</td>
-                                        <td>
-                                            <div>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="fas fa-pencil-alt mt-0"></i>
-                                                </button>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="far fa-trash-alt mt-0"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                        <td>Larry</td>
-                                        <td>
-                                            <div>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="fas fa-pencil-alt mt-0"></i>
-                                                </button>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="far fa-trash-alt mt-0"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Paul</td>
-                                        <td>Topolski</td>
-                                        <td>@P_Topolski</td>
-                                        <td>Paul</td>
-                                        <td>
-                                            <div>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="fas fa-pencil-alt mt-0"></i>
-                                                </button>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="far fa-trash-alt mt-0"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                        <td>Larry</td>
-                                        <td>
-                                            <div>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="fas fa-pencil-alt mt-0"></i>
-                                                </button>
                                                 <button type="button"
                                                         class="btn btn-outline-blue btn-rounded btn-sm px-2">
                                                     <i class="far fa-trash-alt mt-0"></i>
@@ -857,355 +400,20 @@
                                 </table>
                                 <!--Table-->
                             </div>
-
                         </div>
-
                     </div>
                     <!-- Table with panel -->
-                </div>
 
-                <div class="tab-pane fade" id="contact-md" role="tabpanel" aria-labelledby="contact-tab-md">
-                    <!-- Table with panel -->
-                    <div class="card card-cascade narrower">
 
-                        <!--Card image-->
-                        <div
-                                class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
-
-                            <div>
-                                <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-                                    <i class="fas fa-th-large mt-0"></i>
-                                </button>
-                                <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-                                    <i class="fas fa-columns mt-0"></i>
-                                </button>
-                            </div>
-
-                            <a href="" class="white-text mx-3">UserRole</a>
-
-                            <div>
-
-                                <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2"data-toggle="modal" data-target="#basicExampleModal">
-                                    <i class="fas fa-info-circle mt-0"> Profile</i>
-                                </button>
-                            </div>
-
-                        </div>
-                        <!--/Card image-->
-
-                        <div class="px-4">
-
-                            <div class="table-wrapper table-bordered">
-                                <!--Table-->
-                                <table class="table table-hover mb-0">
-
-                                    <!--Table head-->
-                                    <thead>
-                                    <tr>
-
-                                        <th class="th-lg">
-                                            <a>First Name
-                                                <i class="fas fa-sort ml-1"></i>
-                                            </a>
-                                        </th>
-                                        <th class="th-lg">
-                                            <a href="">Last Name
-                                                <i class="fas fa-sort ml-1"></i>
-                                            </a>
-                                        </th>
-                                        <th class="th-lg">
-                                            <a href="">Username
-                                                <i class="fas fa-sort ml-1"></i>
-                                            </a>
-                                        </th>
-                                        <th class="th-lg">
-                                            <a href="">Username
-                                                <i class="fas fa-sort ml-1"></i>
-                                            </a>
-                                        </th>
-                                        <th class="th-lg">
-                                            <a href="">Options</a>
-                                        </th>
-                                    </tr>
-                                    </thead>
-                                    <!--Table head-->
-
-                                    <!--Table body-->
-                                    <tbody>
-                                    <tr>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td>Mark</td>
-                                        <td>
-                                            <div>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="fas fa-pencil-alt mt-0"></i>
-                                                </button>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="far fa-trash-alt mt-0"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                        <td>Jacob</td>
-                                        <td>
-                                            <div>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="fas fa-pencil-alt mt-0"></i>
-                                                </button>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="far fa-trash-alt mt-0"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                        <td>Larry</td>
-                                        <td>
-                                            <div>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="fas fa-pencil-alt mt-0"></i>
-                                                </button>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="far fa-trash-alt mt-0"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Paul</td>
-                                        <td>Topolski</td>
-                                        <td>@P_Topolski</td>
-                                        <td>Paul</td>
-                                        <td>
-                                            <div>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="fas fa-pencil-alt mt-0"></i>
-                                                </button>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="far fa-trash-alt mt-0"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                        <td>Larry</td>
-                                        <td>
-                                            <div>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="fas fa-pencil-alt mt-0"></i>
-                                                </button>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="far fa-trash-alt mt-0"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                    <!--Table body-->
-                                </table>
-                                <!--Table-->
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <!-- Table with panel -->
-                </div>
-
-                <div class="tab-pane fade" id="contact-md" role="tabpanel" aria-labelledby="contact-tab-md">
-                    <!-- Table with panel -->
-                    <div class="card card-cascade narrower">
-
-                        <!--Card image-->
-                        <div
-                                class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
-
-                            <div>
-                                <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-                                    <i class="fas fa-th-large mt-0"></i>
-                                </button>
-                                <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-                                    <i class="fas fa-columns mt-0"></i>
-                                </button>
-                            </div>
-
-                            <a href="" class="white-text mx-3">User Status</a>
-
-                            <div>
-
-                                <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2"data-toggle="modal" data-target="#basicExampleModal">
-                                    <i class="fas fa-info-circle mt-0"> Profile</i>
-                                </button>
-                            </div>
-
-                        </div>
-                        <!--/Card image-->
-
-                        <div class="px-4">
-
-                            <div class="table-wrapper table-bordered">
-                                <!--Table-->
-                                <table class="table table-hover mb-0">
-
-                                    <!--Table head-->
-                                    <thead>
-                                    <tr>
-
-                                        <th class="th-lg">
-                                            <a>First Name
-                                                <i class="fas fa-sort ml-1"></i>
-                                            </a>
-                                        </th>
-                                        <th class="th-lg">
-                                            <a href="">Last Name
-                                                <i class="fas fa-sort ml-1"></i>
-                                            </a>
-                                        </th>
-                                        <th class="th-lg">
-                                            <a href="">Username
-                                                <i class="fas fa-sort ml-1"></i>
-                                            </a>
-                                        </th>
-                                        <th class="th-lg">
-                                            <a href="">Username
-                                                <i class="fas fa-sort ml-1"></i>
-                                            </a>
-                                        </th>
-                                        <th class="th-lg">
-                                            <a href="">Options</a>
-                                        </th>
-                                    </tr>
-                                    </thead>
-                                    <!--Table head-->
-
-                                    <!--Table body-->
-                                    <tbody>
-                                    <tr>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td>Mark</td>
-                                        <td>
-                                            <div>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="fas fa-pencil-alt mt-0"></i>
-                                                </button>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="far fa-trash-alt mt-0"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                        <td>Jacob</td>
-                                        <td>
-                                            <div>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="fas fa-pencil-alt mt-0"></i>
-                                                </button>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="far fa-trash-alt mt-0"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                        <td>Larry</td>
-                                        <td>
-                                            <div>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="fas fa-pencil-alt mt-0"></i>
-                                                </button>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="far fa-trash-alt mt-0"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Paul</td>
-                                        <td>Topolski</td>
-                                        <td>@P_Topolski</td>
-                                        <td>Paul</td>
-                                        <td>
-                                            <div>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="fas fa-pencil-alt mt-0"></i>
-                                                </button>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="far fa-trash-alt mt-0"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                        <td>Larry</td>
-                                        <td>
-                                            <div>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="fas fa-pencil-alt mt-0"></i>
-                                                </button>
-                                                <button type="button"
-                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                    <i class="far fa-trash-alt mt-0"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                    <!--Table body-->
-                                </table>
-                                <!--Table-->
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <!-- Table with panel -->
                 </div>
             </div>
 
         </div>
+        <!-- Classic tabs -->
+
+    </div>
+
+    </div>
 
     </div>
 
@@ -1251,7 +459,8 @@
                             <div class="col-md-6">
                                 <!-- Material input -->
                                 <div class="md-form form-group">
-                                    <input type="password" class="form-control" id="inputPassword4MD" placeholder="Password">
+                                    <input type="password" class="form-control" id="inputPassword4MD"
+                                           placeholder="Password">
                                     <label for="inputPassword4MD">Password</label>
                                 </div>
                             </div>
@@ -1265,7 +474,8 @@
                             <div class="col-md-12">
                                 <!-- Material input -->
                                 <div class="md-form form-group">
-                                    <input type="text" class="form-control" id="inputAddressMD" placeholder="1234 Main St">
+                                    <input type="text" class="form-control" id="inputAddressMD"
+                                           placeholder="1234 Main St">
                                     <label for="inputAddressMD">Address</label>
                                 </div>
                             </div>
@@ -1275,7 +485,8 @@
                             <div class="col-md-12">
                                 <!-- Material input -->
                                 <div class="md-form form-group">
-                                    <input type="text" class="form-control" id="inputAddress2MD" placeholder="Apartment, studio, or floor">
+                                    <input type="text" class="form-control" id="inputAddress2MD"
+                                           placeholder="Apartment, studio, or floor">
                                     <label for="inputAddress2MD">Address 2</label>
                                 </div>
                             </div>
@@ -1289,7 +500,8 @@
                             <div class="col-md-6">
                                 <!-- Material input -->
                                 <div class="md-form form-group">
-                                    <input type="text" class="form-control" id="inputCityMD" placeholder="New York City">
+                                    <input type="text" class="form-control" id="inputCityMD"
+                                           placeholder="New York City">
                                     <label for="inputCityMD">City</label>
                                 </div>
                             </div>
@@ -1567,5 +779,4 @@
 
 </script>
 </body>
-
 </html>
