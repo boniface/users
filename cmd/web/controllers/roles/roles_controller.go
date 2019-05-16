@@ -18,13 +18,20 @@ func RolesHanler(app *config.Env) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		files := []string{
 			"./views/html/roles/roles.page.html",
+			"./views/html/base/base.page.html",
+			"./views/html/base/footer.page.html",
+			"./views/html/base/header.page.html",
+			"./views/html/base/modal.page.html",
+			"./views/html/base/navbar.page.html",
+			"./views/html/base/sidebar.page.html",
+			"./views/html/base/tabs.page.html",
 		}
 		ts, err := template.ParseFiles(files...)
 		if err != nil {
 			app.ErrorLog.Println(err.Error())
 			return
 		}
-		err = ts.Execute(w, nil)
+		err = ts.ExecuteTemplate(w, "base", nil)
 		if err != nil {
 			app.ErrorLog.Println(err.Error())
 		}
