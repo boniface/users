@@ -34,7 +34,7 @@ func RolesHanler(app *config.Env) http.HandlerFunc {
 			Rolepool []roles.RolesPool
 			Name     string
 		}
-		data := PageData{allRoles, rolespool, "Hello Fuck it Works "}
+		data := PageData{allRoles, rolespool, " "}
 
 		files := []string{
 			"./views/html/roles/roles.page.html",
