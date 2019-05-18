@@ -11,7 +11,7 @@ const rolesurl = api.BASE_URL + "/roles/pool"
 
 type RolesPool roles.RolesPool
 
-func getRolespools() ([]RolesPool, error) {
+func GetRolespools() ([]RolesPool, error) {
 	entities := []RolesPool{}
 	resp, _ := api.Rest().Get(rolesurl + "/all")
 	if resp.IsError() {
@@ -24,7 +24,7 @@ func getRolespools() ([]RolesPool, error) {
 	return entities, nil
 }
 
-func getRolespool(id string) (RolesPool, error) {
+func GetRolespool(id string) (RolesPool, error) {
 	rolespool := RolesPool{}
 	resp, _ := api.Rest().Get(rolesurl + "/get/" + id)
 	if resp.IsError() {
@@ -38,7 +38,7 @@ func getRolespool(id string) (RolesPool, error) {
 
 }
 
-func createRolespool(entity RolesPool) (bool, error) {
+func CreateRolespool(entity RolesPool) (bool, error) {
 	resp, _ := api.Rest().
 		SetBody(entity).
 		Post(rolesurl + "/create")
@@ -49,7 +49,7 @@ func createRolespool(entity RolesPool) (bool, error) {
 	return true, nil
 
 }
-func updateRolespool(entity RolesPool) (bool, error) {
+func UpdateRolespool(entity RolesPool) (bool, error) {
 	resp, _ := api.Rest().
 		SetBody(entity).
 		Post(rolesurl + "/update")
@@ -61,7 +61,7 @@ func updateRolespool(entity RolesPool) (bool, error) {
 
 }
 
-func deleteRolespool(entity RolesPool) (bool, error) {
+func DeleteRolespool(entity RolesPool) (bool, error) {
 	resp, _ := api.Rest().
 		SetBody(entity).
 		Post(rolesurl + "/delete")

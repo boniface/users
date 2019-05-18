@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"net/http"
 	"users/cmd/config"
+	"users/pkg/api/roles"
 )
 
 func Roles(app *config.Env) http.Handler {
@@ -16,6 +17,25 @@ func Roles(app *config.Env) http.Handler {
 
 func RolesHanler(app *config.Env) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+
+		allRoles, err := roles.GetRoles()
+
+		if err != nil {
+			app.ServerError(w, err)
+		}
+
+		rolespool, err := roles.GetRolespools()
+
+		if err != nil {
+			app.ServerError(w, err)
+		}
+		type PageData struct {
+			Roles    []roles.Role
+			Rolepool []roles.RolesPool
+			Name     string
+		}
+		data := PageData{allRoles, rolespool, "Hello Fuck it Works "}
+
 		files := []string{
 			"./views/html/roles/roles.page.html",
 			"./views/html/base/base.page.html",
@@ -28,7 +48,7 @@ func RolesHanler(app *config.Env) http.HandlerFunc {
 			app.ErrorLog.Println(err.Error())
 			return
 		}
-		err = ts.ExecuteTemplate(w, "base", nil)
+		err = ts.ExecuteTemplate(w, "base", data)
 		if err != nil {
 			app.ErrorLog.Println(err.Error())
 		}

@@ -1,13 +1,11 @@
-
 {{define "header"}}
 
     <div class="card mb-4 wow fadeIn">
-
         <!--Card content-->
         <div class="card-body d-sm-flex justify-content-between">
 
             <h4 class="mb-2 mb-sm-0 pt-1">
-                <a href="/" >Home Page</a>
+                <a href="/">Home Page</a>
                 <span>/</span>
                 <span>Users Roles</span>
             </h4>
@@ -101,60 +99,59 @@
                                 <thead>
                                 <tr>
                                     <th class="th-lg">
-                                        <a>Site Id
+                                        <a>Role ID
                                             <i class="fas fa-sort ml-1"></i>
                                         </a>
                                     </th>
 
                                     <th class="th-lg">
-                                        <a href="">Email
+                                        <a href="">Role Name
                                             <i class="fas fa-sort ml-1"></i>
                                         </a>
                                     </th>
 
                                     <th class="th-lg">
-                                        <a href="">User Id
+                                        <a href="">Role Description
                                             <i class="fas fa-sort ml-1"></i>
                                         </a>
                                     </th>
 
                                     <th class="th-lg">
-                                        <a href="">Site Name
-                                            <i class="fas fa-sort ml-1"></i>
-                                        </a>
+                                        <div style="text-align: center;"><a href="">Actions</a></div>
                                     </th>
 
-                                    <th class="th-lg">
-                                        <a href="">Actions</a>
-                                    </th>
+
                                 </tr>
                                 </thead>
-                                <!--Table head-->
-
-                                <!--Table body-->
+                                <!--Table head Ends -->
+                                <!--Table body Starts -->
                                 <tbody>
-                                <tr>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    <td>Mark</td>
-                                    <td>
-                                        <div>
-                                            <button type="button"
-                                                    class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                <i class="fas fa-pencil-alt mt-0"></i>
-                                            </button>
-                                            <button type="button"
-                                                    class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                <i class="far fa-trash-alt mt-0"></i>
-                                            </button>
-                                            <button type="button"
-                                                    class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                <i class="far fa-trash-alt mt-0"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                {{ with .Rolepool }}
+                                    {{range .}}
+
+                                        <tr>
+                                            <td>{{.Id}}</td>
+                                            <td>{{.RoleName}}</td>
+                                            <td>{{.Description}}</td>
+                                            <td>
+                                                <div style="text-align: center;">
+                                                    <button type="button"
+                                                            class="btn btn-outline-blue btn-rounded btn-sm px-2">
+                                                        <i class="fas fa-pencil-alt mt-0"></i>
+                                                    </button>
+                                                    <button type="button"
+                                                            class="btn btn-outline-blue btn-rounded btn-sm px-2">
+                                                        <i class="far fa-trash-alt mt-0"></i>
+                                                    </button>
+                                                    <button type="button"
+                                                            class="btn btn-outline-blue btn-rounded btn-sm px-2">
+                                                        <i class="far fa-trash-alt mt-0"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {{end}}
+                                {{end}}
                                 </tbody>
                                 <!--Table body-->
                             </table>
@@ -213,25 +210,25 @@
                                     </th>
 
                                     <th class="th-lg">
-                                        <a href="">Email
+                                        <a>Role ID
                                             <i class="fas fa-sort ml-1"></i>
                                         </a>
                                     </th>
 
                                     <th class="th-lg">
-                                        <a href="">User Id
+                                        <a href="">Role Name
                                             <i class="fas fa-sort ml-1"></i>
                                         </a>
                                     </th>
 
                                     <th class="th-lg">
-                                        <a href="">Site Name
+                                        <a href="">Role Description
                                             <i class="fas fa-sort ml-1"></i>
                                         </a>
                                     </th>
 
                                     <th class="th-lg">
-                                        <a href="">Actions</a>
+                                        <div style="text-align: center;"><a href="">Actions</a></div>
                                     </th>
                                 </tr>
                                 </thead>
@@ -239,28 +236,37 @@
 
                                 <!--Table body-->
                                 <tbody>
-                                <tr>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    <td>Mark</td>
-                                    <td>
-                                        <div>
-                                            <button type="button"
-                                                    class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                <i class="fas fa-pencil-alt mt-0"></i>
-                                            </button>
-                                            <button type="button"
-                                                    class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                <i class="far fa-trash-alt mt-0"></i>
-                                            </button>
-                                            <button type="button"
-                                                    class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                <i class="far fa-trash-alt mt-0"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
+
+
+                                {{ with .Roles }}
+                                    {{range .}}
+
+                                        <tr>
+                                            <td>{{.SiteId}}</td>
+                                            <td>{{.Id}}</td>
+                                            <td>{{.RoleName}}</td>
+                                            <td>{{.Description}}</td>
+                                            <td>
+                                                <div style="text-align: center;">
+                                                    <button type="button"
+                                                            class="btn btn-outline-blue btn-rounded btn-sm px-2">
+                                                        <i class="fas fa-pencil-alt mt-0"></i>
+                                                    </button>
+                                                    <button type="button"
+                                                            class="btn btn-outline-blue btn-rounded btn-sm px-2">
+                                                        <i class="far fa-trash-alt mt-0"></i>
+                                                    </button>
+                                                    <button type="button"
+                                                            class="btn btn-outline-blue btn-rounded btn-sm px-2">
+                                                        <i class="far fa-trash-alt mt-0"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {{end}}
+                                {{end}}
+
+
                                 </tbody>
                                 <!--Table body-->
                             </table>
