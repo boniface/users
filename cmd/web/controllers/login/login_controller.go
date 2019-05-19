@@ -60,7 +60,6 @@ func ForgotPassword(app *config.Env) http.HandlerFunc {
 func PasswordHandler(app *config.Env) http.HandlerFunc {
 
 	return func(w http.ResponseWriter, r *http.Request) {
-		fmt.Println(" We got Something Here !!!")
 
 		files := []string{
 			"./views/html/login/password.page.html",

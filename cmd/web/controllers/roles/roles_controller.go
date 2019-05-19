@@ -11,7 +11,106 @@ import (
 func Roles(app *config.Env) http.Handler {
 	r := chi.NewRouter()
 	r.Get("/", RolesHanler(app))
+	//Roles
+	r.Post("/create", CreateRoleHandler(app))
+	r.Post("/update", UpdateRoleHandler(app))
+	r.Get("/edit/{id}", EditRoleHandler(app))
+	r.Get("/details/{id}", DetailsRoleHandler(app))
+	//Roles Pool
+	r.Post("/pool/create", CreatePoolRoleHandler(app))
+	r.Post("/pool/update", UpdatePoolRoleHandler(app))
+	r.Get("/pool/edit/{id}", EditPoolRoleHandler(app))
+	r.Get("/pool/details/{id}", DetailPoolRoleHandler(app))
 	return r
+
+}
+
+//SiteId      string `json:"siteId"`
+//Id          string `json:"id"`
+//RoleName    string `json:"roleName"`
+//Description
+
+func CreatePoolRoleHandler(app *config.Env) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		r.ParseForm()
+		Id := r.PostFormValue("id")
+		RoleName := r.PostFormValue("roleName")
+		Description := r.PostFormValue("description")
+		role := roles.RolesPool{Id, RoleName, Description}
+		_, err := roles.CreateRolespool(role)
+		if err != nil {
+			app.ServerError(w, err)
+		}
+		http.Redirect(w, r, "/roles", 301)
+
+	}
+
+}
+
+func EditPoolRoleHandler(app *config.Env) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		r.ParseForm()
+		//email := r.PostFormValue("email")
+		//chi.URLParam(r, "articleID");
+
+	}
+
+}
+
+func DetailPoolRoleHandler(app *config.Env) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		r.ParseForm()
+		//email := r.PostFormValue("email")
+		//chi.URLParam(r, "articleID");
+
+	}
+
+}
+
+func EditRoleHandler(app *config.Env) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		r.ParseForm()
+		//email := r.PostFormValue("email")
+		//chi.URLParam(r, "articleID");
+
+	}
+
+}
+
+func DetailsRoleHandler(app *config.Env) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		r.ParseForm()
+		//email := r.PostFormValue("email")
+		//chi.URLParam(r, "articleID");
+
+	}
+
+}
+
+func UpdatePoolRoleHandler(app *config.Env) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		//r.ParseForm()
+		//email := r.PostFormValue("email")
+
+	}
+
+}
+
+func CreateRoleHandler(app *config.Env) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		r.ParseForm()
+		//email := r.PostFormValue("email")
+
+	}
+
+}
+
+func UpdateRoleHandler(app *config.Env) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		r.ParseForm()
+		//email := r.PostFormValue("email")
+
+	}
 
 }
 
