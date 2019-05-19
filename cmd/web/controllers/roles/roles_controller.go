@@ -89,8 +89,16 @@ func DetailsRoleHandler(app *config.Env) http.HandlerFunc {
 
 func UpdatePoolRoleHandler(app *config.Env) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		//r.ParseForm()
-		//email := r.PostFormValue("email")
+		r.ParseForm()
+		Id := r.PostFormValue("id")
+		RoleName := r.PostFormValue("roleName")
+		Description := r.PostFormValue("description")
+		role := roles.RolesPool{Id, RoleName, Description}
+		_, err := roles.UpdateRolespool(role)
+		if err != nil {
+			app.ServerError(w, err)
+		}
+		http.Redirect(w, r, "/roles", 301)
 
 	}
 
