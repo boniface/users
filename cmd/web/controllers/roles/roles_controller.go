@@ -53,7 +53,7 @@ func EditPoolRoleHandler(app *config.Env) http.HandlerFunc {
 		}
 		data := PageData{role}
 		files := []string{
-			app.Path + "/roles/edit.page.html",
+			app.Path + "/roles/rolespool/edit.page.html",
 			app.Path + "/base/header.page.html",
 			app.Path + "/base/base.page.html",
 			app.Path + "/base/navbar.page.html",
@@ -83,7 +83,7 @@ func DetailPoolRoleHandler(app *config.Env) http.HandlerFunc {
 		}
 		data := PageData{role}
 		files := []string{
-			app.Path + "/roles/details.page.html",
+			app.Path + "/roles/rolespool/details.page.html",
 			app.Path + "/base/header.page.html",
 			app.Path + "/base/base.page.html",
 			app.Path + "/base/navbar.page.html",

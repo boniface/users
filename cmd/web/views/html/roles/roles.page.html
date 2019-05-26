@@ -137,14 +137,14 @@
                                                 <div style="text-align: center;">
                                                     <a href="/roles/edit/{{.Id}}"
                                                        data-toggle="tooltip" data-placement="top" title="Edit"
-                                                            class="btn btn-outline-blue btn-rounded btn-sm px-2">
+                                                       class="btn btn-outline-blue btn-rounded btn-sm px-2">
                                                         <i class="fas fa-pencil-alt mt-0"></i>
                                                     </a>
 
                                                     <a href="./roles/details/{{.Id}}"
-                                                            data-toggle="tooltip" data-placement="top" title="Details"
-                                                            class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                        <i class="far fa-trash-alt mt-0"></i>
+                                                       data-toggle="tooltip" data-placement="top" title="Details"
+                                                       class="btn btn-outline-blue btn-rounded btn-sm px-2">
+                                                        <i class="fas fa-info-circle mt-0"></i>
                                                     </a>
 
                                                 </div>
@@ -185,13 +185,7 @@
 
                         <a href="" class="white-text mx-3">Custom Site Roles</a>
 
-                        <div>
 
-                            <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2"
-                                    data-toggle="modal" data-target="#rolesModal">
-                                <i class="fas fa-info-circle mt-0"> Add New</i>
-                            </button>
-                        </div>
                     </div>
 
                     <!--/Card image-->
@@ -248,18 +242,18 @@
                                             <td>{{.Description}}</td>
                                             <td>
                                                 <div style="text-align: center;">
-                                                    <button type="button"
-                                                            class="btn btn-outline-blue btn-rounded btn-sm px-2">
+                                                    <a href="/roles/roleedit/{{.Id}}"
+                                                       data-toggle="tooltip" data-placement="top" title="Edit"
+                                                       class="btn btn-outline-blue btn-rounded btn-sm px-2">
                                                         <i class="fas fa-pencil-alt mt-0"></i>
-                                                    </button>
-                                                    <button type="button"
-                                                            class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                        <i class="far fa-trash-alt mt-0"></i>
-                                                    </button>
-                                                    <button type="button"
-                                                            class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                        <i class="far fa-trash-alt mt-0"></i>
-                                                    </button>
+                                                    </a>
+
+                                                    <a href="./roles/roledetails/{{.Id}}"
+                                                       data-toggle="tooltip" data-placement="top" title="Details"
+                                                       class="btn btn-outline-blue btn-rounded btn-sm px-2">
+                                                        <i class="fas fa-info-circle mt-0"></i>
+                                                    </a>
+
                                                 </div>
                                             </td>
                                         </tr>
@@ -288,7 +282,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Role For the Pool  </h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add Role For the Pool </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -306,7 +300,8 @@
                             <!-- Default input -->
                             <div class="form-group col-md-6">
                                 <label for="roleName">Role Name </label>
-                                <input type="text" class="form-control" name="roleName" id="roleName" placeholder="Role Name">
+                                <input type="text" class="form-control" name="roleName" id="roleName"
+                                       placeholder="Role Name">
                             </div>
                         </div>
                         <!-- Grid row -->
@@ -314,12 +309,13 @@
                         <!-- Default input -->
                         <div class="form-group">
                             <label for="description">Role Description</label>
-                            <input type="text" class="form-control" id="description" name="description" placeholder="Description for the Role ">
+                            <input type="text" class="form-control" id="description" name="description"
+                                   placeholder="Description for the Role ">
                         </div>
                         <!-- Grid row -->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save </button>
+                            <button type="submit" class="btn btn-primary">Save</button>
                         </div>
                     </form>
 
@@ -335,7 +331,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Roles For the Site  </h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add Roles For the Site </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -361,12 +357,13 @@
                         <!-- Default input -->
                         <div class="form-group">
                             <label for="inputAddress">Role Description</label>
-                            <input type="text" class="form-control" id="inputAddress" placeholder="Description for the Role ">
+                            <input type="text" class="form-control" id="inputAddress"
+                                   placeholder="Description for the Role ">
                         </div>
                         <!-- Grid row -->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save </button>
+                            <button type="button" class="btn btn-primary">Save</button>
                         </div>
                     </form>
 
