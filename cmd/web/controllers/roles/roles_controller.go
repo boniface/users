@@ -49,19 +49,56 @@ func CreatePoolRoleHandler(app *config.Env) http.HandlerFunc {
 
 func EditPoolRoleHandler(app *config.Env) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		r.ParseForm()
-		//email := r.PostFormValue("email")
-		//chi.URLParam(r, "articleID");
-
+		id := chi.URLParam(r, "id")
+		role, _ := roles.GetRolespool(id)
+		type PageData struct {
+			Rolepool roles.RolesPool
+		}
+		data := PageData{role}
+		files := []string{
+			app.Path + "/roles/roles.page.html",
+			app.Path + "/base/base.page.html",
+			app.Path + "/base/navbar.page.html",
+			app.Path + "/base/sidebar.page.html",
+			app.Path + "/base/footer.page.html",
+		}
+		ts, err := template.ParseFiles(files...)
+		if err != nil {
+			app.ErrorLog.Println(err.Error())
+			return
+		}
+		err = ts.ExecuteTemplate(w, "base", data)
+		if err != nil {
+			app.ErrorLog.Println(err.Error())
+		}
 	}
 
 }
 
 func DetailPoolRoleHandler(app *config.Env) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		r.ParseForm()
-		//email := r.PostFormValue("email")
-		//chi.URLParam(r, "articleID");
+		id := chi.URLParam(r, "id")
+		role, _ := roles.GetRolespool(id)
+		type PageData struct {
+			Rolepool roles.RolesPool
+		}
+		data := PageData{role}
+		files := []string{
+			app.Path + "/roles/roles.page.html",
+			app.Path + "/base/base.page.html",
+			app.Path + "/base/navbar.page.html",
+			app.Path + "/base/sidebar.page.html",
+			app.Path + "/base/footer.page.html",
+		}
+		ts, err := template.ParseFiles(files...)
+		if err != nil {
+			app.ErrorLog.Println(err.Error())
+			return
+		}
+		err = ts.ExecuteTemplate(w, "base", data)
+		if err != nil {
+			app.ErrorLog.Println(err.Error())
+		}
 
 	}
 
@@ -69,19 +106,55 @@ func DetailPoolRoleHandler(app *config.Env) http.HandlerFunc {
 
 func EditRoleHandler(app *config.Env) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		r.ParseForm()
-		//email := r.PostFormValue("email")
-		//chi.URLParam(r, "articleID");
-
+		id := chi.URLParam(r, "id")
+		role, _ := roles.GetRolespool(id)
+		type PageData struct {
+			Rolepool roles.RolesPool
+		}
+		data := PageData{role}
+		files := []string{
+			app.Path + "/roles/roles.page.html",
+			app.Path + "/base/base.page.html",
+			app.Path + "/base/navbar.page.html",
+			app.Path + "/base/sidebar.page.html",
+			app.Path + "/base/footer.page.html",
+		}
+		ts, err := template.ParseFiles(files...)
+		if err != nil {
+			app.ErrorLog.Println(err.Error())
+			return
+		}
+		err = ts.ExecuteTemplate(w, "base", data)
+		if err != nil {
+			app.ErrorLog.Println(err.Error())
+		}
 	}
-
 }
 
 func DetailsRoleHandler(app *config.Env) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		r.ParseForm()
-		//email := r.PostFormValue("email")
-		//chi.URLParam(r, "articleID");
+		id := chi.URLParam(r, "id")
+		role, _ := roles.GetRolespool(id)
+		type PageData struct {
+			Rolepool roles.RolesPool
+		}
+		data := PageData{role}
+		files := []string{
+			app.Path + "/roles/roles.page.html",
+			app.Path + "/base/base.page.html",
+			app.Path + "/base/navbar.page.html",
+			app.Path + "/base/sidebar.page.html",
+			app.Path + "/base/footer.page.html",
+		}
+		ts, err := template.ParseFiles(files...)
+		if err != nil {
+			app.ErrorLog.Println(err.Error())
+			return
+		}
+		err = ts.ExecuteTemplate(w, "base", data)
+		if err != nil {
+			app.ErrorLog.Println(err.Error())
+		}
 
 	}
 
@@ -99,27 +172,37 @@ func UpdatePoolRoleHandler(app *config.Env) http.HandlerFunc {
 			app.ServerError(w, err)
 		}
 		http.Redirect(w, r, "/roles", 301)
-
 	}
-
 }
 
 func CreateRoleHandler(app *config.Env) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		r.ParseForm()
-		//email := r.PostFormValue("email")
-
+		Id := r.PostFormValue("id")
+		RoleName := r.PostFormValue("roleName")
+		Description := r.PostFormValue("description")
+		role := roles.RolesPool{Id, RoleName, Description}
+		_, err := roles.CreateRolespool(role)
+		if err != nil {
+			app.ServerError(w, err)
+		}
+		http.Redirect(w, r, "/roles", 301)
 	}
-
 }
 
 func UpdateRoleHandler(app *config.Env) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		r.ParseForm()
-		//email := r.PostFormValue("email")
-
+		Id := r.PostFormValue("id")
+		RoleName := r.PostFormValue("roleName")
+		Description := r.PostFormValue("description")
+		role := roles.RolesPool{Id, RoleName, Description}
+		_, err := roles.CreateRolespool(role)
+		if err != nil {
+			app.ServerError(w, err)
+		}
+		http.Redirect(w, r, "/roles", 301)
 	}
-
 }
 
 func RolesHanler(app *config.Env) http.HandlerFunc {
@@ -144,11 +227,11 @@ func RolesHanler(app *config.Env) http.HandlerFunc {
 		data := PageData{allRoles, rolespool, " "}
 
 		files := []string{
-			"./views/html/roles/roles.page.html",
-			"./views/html/base/base.page.html",
-			"./views/html/base/navbar.page.html",
-			"./views/html/base/sidebar.page.html",
-			"./views/html/base/footer.page.html",
+			app.Path + "/roles/roles.page.html",
+			app.Path + "/base/base.page.html",
+			app.Path + "/base/navbar.page.html",
+			app.Path + "/base/sidebar.page.html",
+			app.Path + "/base/footer.page.html",
 		}
 		ts, err := template.ParseFiles(files...)
 		if err != nil {

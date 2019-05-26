@@ -14,6 +14,7 @@ func main() {
 
 	// Initialize a new template cache...
 	templateCache, err := config.NewTemplateCache("./ui/html/")
+	var path = "./cmd/web/views/html"
 	if err != nil {
 		fmt.Println(" There is a Error ", err)
 	}
@@ -24,6 +25,7 @@ func main() {
 		ErrorLog:      log.New(os.Stdout, "ERROR\t", log.Ldate|log.Ltime),
 		InfoLog:       log.New(os.Stderr, "INFO\t", log.Ldate|log.Ltime|log.Lshortfile),
 		TemplateCache: templateCache,
+		Path:          path,
 	}
 
 	srv := &http.Server{

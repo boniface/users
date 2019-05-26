@@ -15,6 +15,7 @@ type Env struct {
 	ErrorLog      *log.Logger
 	InfoLog       *log.Logger
 	TemplateCache map[string]*template.Template
+	Path          string
 }
 
 type templateData struct {

@@ -13,24 +13,21 @@ func Home(app *config.Env) http.Handler {
 	r.Use(middleware.RequireAuthenticatedUser)
 	r.Get("/", IndexHanler(app))
 	return r
-
 }
 
 func IndexHanler(app *config.Env) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		files := []string{
-			"./views/html/index.html",
+			app.Path + "/index.html",
 		}
 		ts, err := template.ParseFiles(files...)
 		if err != nil {
 			app.ErrorLog.Println(err.Error())
-
 			return
 		}
 		err = ts.Execute(w, nil)
 		if err != nil {
 			app.ErrorLog.Println(err.Error())
-
 		}
 	}
 }
