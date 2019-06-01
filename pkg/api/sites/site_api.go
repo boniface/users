@@ -11,7 +11,7 @@ const url = api.BASE_URL + "/sites"
 
 type Site sites.Site
 
-func getSites() ([]Site, error) {
+func GetSites() ([]Site, error) {
 	entities := []Site{}
 	resp, _ := api.Rest().Get(url + "/all")
 	if resp.IsError() {
@@ -25,7 +25,7 @@ func getSites() ([]Site, error) {
 
 }
 
-func getSite(id string) (Site, error) {
+func GetSite(id string) (Site, error) {
 	role := Site{}
 	resp, _ := api.Rest().Get(url + "/get/" + id)
 	if resp.IsError() {
@@ -39,18 +39,17 @@ func getSite(id string) (Site, error) {
 
 }
 
-func createSite(entity Site) (bool, error) {
+func CreateSite(entity Site) (bool, error) {
 	resp, _ := api.Rest().
 		SetBody(entity).
 		Post(url + "/create")
 	if resp.IsError() {
 		return false, errors.New(resp.Status())
 	}
-
 	return true, nil
 
 }
-func updateSite(entity Site) (bool, error) {
+func UpdateSite(entity Site) (bool, error) {
 	resp, _ := api.Rest().
 		SetBody(entity).
 		Post(url + "/update")
@@ -62,15 +61,13 @@ func updateSite(entity Site) (bool, error) {
 
 }
 
-func deleteSite(entity Site) (bool, error) {
-
+func DeleteSite(entity Site) (bool, error) {
 	resp, _ := api.Rest().
 		SetBody(entity).
 		Post(url + "/delete")
 	if resp.IsError() {
 		return false, errors.New(resp.Status())
 	}
-
 	return true, nil
 
 }

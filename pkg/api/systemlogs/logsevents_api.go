@@ -7,25 +7,39 @@ import (
 	"users/pkg/domain/systemlogs"
 )
 
-const url = api.BASE_URL + "/roles"
+const url = api.BASE_URL + "/systemlogs"
 
 type LogEvent systemlogs.LogEvent
 
-func getLogEvents() ([]LogEvent, error) {
-	roles := []LogEvent{}
+func GetLogEvents() ([]LogEvent, error) {
+	logs := []LogEvent{}
 	resp, _ := api.Rest().Get(url + "/all")
 	if resp.IsError() {
-		return roles, errors.New(resp.Status())
+		return logs, errors.New(resp.Status())
 	}
-	err := json.Unmarshal(resp.Body(), &roles)
+	err := json.Unmarshal(resp.Body(), &logs)
 	if err != nil {
-		return roles, errors.New(resp.Status())
+		return logs, errors.New(resp.Status())
 	}
-	return roles, nil
+	return logs, nil
 
 }
 
-func getLogEvent(id string) (LogEvent, error) {
+func GetLogEventsForSite(siteid string) ([]LogEvent, error) {
+	logs := []LogEvent{}
+	resp, _ := api.Rest().Get(url + "/get/site/" + siteid)
+	if resp.IsError() {
+		return logs, errors.New(resp.Status())
+	}
+	err := json.Unmarshal(resp.Body(), &logs)
+	if err != nil {
+		return logs, errors.New(resp.Status())
+	}
+	return logs, nil
+
+}
+
+func GetLogEvent(id string) (LogEvent, error) {
 
 	logEvent := LogEvent{}
 	resp, _ := api.Rest().Get(url + "/get/" + id)
@@ -39,7 +53,7 @@ func getLogEvent(id string) (LogEvent, error) {
 	return logEvent, nil
 }
 
-func createLogEvent(entity LogEvent) (bool, error) {
+func CreateLogEvent(entity LogEvent) (bool, error) {
 	resp, _ := api.Rest().
 		SetBody(entity).
 		Post(url + "/create")
@@ -50,7 +64,7 @@ func createLogEvent(entity LogEvent) (bool, error) {
 	return true, nil
 
 }
-func updateLogEvent(entity LogEvent) (bool, error) {
+func UpdateLogEvent(entity LogEvent) (bool, error) {
 	resp, _ := api.Rest().
 		SetBody(entity).
 		Post(url + "/update")
@@ -61,7 +75,7 @@ func updateLogEvent(entity LogEvent) (bool, error) {
 
 }
 
-func deleteLogEvent(entity LogEvent) (bool, error) {
+func DeleteLogEvent(entity LogEvent) (bool, error) {
 
 	resp, _ := api.Rest().
 		SetBody(entity).
@@ -69,7 +83,6 @@ func deleteLogEvent(entity LogEvent) (bool, error) {
 	if resp.IsError() {
 		return false, errors.New(resp.Status())
 	}
-
 	return true, nil
 
 }

@@ -28,7 +28,7 @@ func Controllers(env *config.Env) http.Handler {
 	mux.Mount("/security", security.Security(env))
 	mux.Mount("/sites", sites.Sites(env))
 	mux.Mount("/subscriptions", subscriptions.Subscriptions(env))
-	mux.Mount("/systemlogs", systemlogs.SitesHanler(env))
+	mux.Mount("/logs", systemlogs.Systemlogs(env))
 	mux.Mount("/users", users.UsersHanler(env))
 
 	fileServer := http.FileServer(http.Dir("./cmd/web/views/assets/"))
