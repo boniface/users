@@ -7,16 +7,24 @@
             <h4 class="mb-2 mb-sm-0 pt-1">
                 <a href="/">Home Page</a>
                 <span>/</span>
-                <span>Users Roles</span>
+                <span>System Logs</span>
             </h4>
 
-            <form class="d-flex justify-content-center">
+            <form class="d-flex justify-content-center"  name="rolePoolForm" method="POST" action="/logs/logsites" novalidate>
                 <!-- Default input -->
-                <input type="search" placeholder="Type your query" aria-label="Search" class="form-control">
+
+                <select type="search" name="siteId" placeholder="Type your query" aria-label="Search" class="form-control">
+                    <option value="" disabled selected>Select Site</option>
+                    {{with .Sites}}
+                        {{range .}}
+                            <option value={{ .SiteId }}>{{ .SiteName }}</option>
+                        {{end}}
+                    {{end}}
+                </select>
+
                 <button class="btn btn-primary btn-sm my-0 p" type="submit">
                     <i class="fas fa-search"></i>
                 </button>
-
             </form>
 
         </div>
@@ -26,249 +34,108 @@
 
 {{define "contents"}}
 
-    <div class="classic-tabs mx-2">
 
-        <ul class="nav nav-tabs md-tabs" id="myClassicTabOrange" role="tablist">
-
-            <li class="nav-item">
-                <a class="nav-link  waves-light active show" id="profile-tab-classic-orange" data-toggle="tab"
-                   href="#profile-classic-orange"
-                   role="tab" aria-controls="profile-classic-orange" aria-selected="true">
-                    <div
-                            style="text-align: center;"><i
-                                class="fas fa-user-secret fa-2x pb-2"
-                                aria-hidden="true"></i></div>
-                    <br>Default Roles From Pool </a>
-
-            </li>
+    <div class="tab-content card" id="myClassicTabContentOrange">
+        <div class="tab-pane fade active show" id="profile-classic-orange" role="tabpanel"
+             aria-labelledby="profile-tab-classic-orange">
+            <p></p>
 
 
-            <li class="nav-item">
-                <a class="nav-link waves-light" id="follow-tab-classic-orange" data-toggle="tab"
-                   href="#follow-classic-orange"
-                   role="tab" aria-controls="follow-classic-orange" aria-selected="false">
-                    <div
-                            style="text-align: center;"><i
-                                class="fas fa-globe fa-2x pb-2"
-                                aria-hidden="true"></i></div>
-                    <br>Custom Site Roles</a>
-            </li>
+            <!-- Table with panel -->
+            <div class="card card-cascade narrower">
 
-        </ul>
-
-        <div class="tab-content card" id="myClassicTabContentOrange">
-            <div class="tab-pane fade active show" id="profile-classic-orange" role="tabpanel"
-                 aria-labelledby="profile-tab-classic-orange">
-                <p></p>
+                <!--Card image-->
+                <div class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
 
 
-                <!-- Table with panel -->
-                <div class="card card-cascade narrower">
-
-                    <!--Card image-->
-                    <div
-                            class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
-
-                        <div>
-                            <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-                                <i class="fas fa-th-large mt-0"></i>
-                            </button>
-                            <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-                                <i class="fas fa-columns mt-0"></i>
-                            </button>
-                        </div>
-
-                        <a href="" class="white-text mx-3">Default Roles From Pool</a>
-
-                        <div>
-
-                            <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2"
-                                    data-toggle="modal" data-target="#rolespoolModal">
-                                <i class="fas fa-info-circle mt-0"> Add New</i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!--/Card image-->
-
-                    <div class="px-4">
-                        <div class="table-wrapper table-bordered">
-                            <!--Table-->
-                            <table class="table table-hover mb-0">
-                                <!--Table head-->
-                                <thead>
-                                <tr>
-                                    <th class="th-lg">
-                                        <a>Role ID
-                                            <i class="fas fa-sort ml-1"></i>
-                                        </a>
-                                    </th>
-
-                                    <th class="th-lg">
-                                        <a href="">Role Name
-                                            <i class="fas fa-sort ml-1"></i>
-                                        </a>
-                                    </th>
-
-                                    <th class="th-lg">
-                                        <a href="">Role Description
-                                            <i class="fas fa-sort ml-1"></i>
-                                        </a>
-                                    </th>
-
-                                    <th class="th-lg">
-                                        <div style="text-align: center;"><a href="">Actions</a></div>
-                                    </th>
+                    <a href="" class="white-text mx-3">Log Events for: </a>
 
 
-                                </tr>
-                                </thead>
-                                <!--Table head Ends -->
-                                <!--Table body Starts -->
-                                <tbody>
-                                {{ with .Rolepool }}
-                                    {{range .}}
+                </div>
 
-                                        <tr>
-                                            <td>{{.Id}}</td>
-                                            <td>{{.RoleName}}</td>
-                                            <td>{{.Description}}</td>
-                                            <td>
-                                                <div style="text-align: center;">
-                                                    <a href="/roles/edit/{{.Id}}"
-                                                       data-toggle="tooltip" data-placement="top" title="Edit"
-                                                       class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                        <i class="fas fa-pencil-alt mt-0"></i>
-                                                    </a>
+                <!--/Card image-->
 
-                                                    <a href="./roles/details/{{.Id}}"
-                                                       data-toggle="tooltip" data-placement="top" title="Details"
-                                                       class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                        <i class="fas fa-info-circle mt-0"></i>
-                                                    </a>
+                {{/*                SiteId    string `json:"siteId"`*/}}
+                {{/*                Id        string `json:"id"`*/}}
+                {{/*                EventName string `json:"eventName"`*/}}
+                {{/*                EventType string `json:"eventType"`*/}}
+                {{/*                Message   string `json:"message"`*/}}
+                {{/*                Date      string `json:"date"`*/}}
 
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    {{end}}
+                <div class="px-4">
+                    <div class="table-wrapper table-bordered">
+                        <!--Table-->
+                        <table class="table table-hover mb-0">
+                            <!--Table head-->
+                            <thead>
+                            <tr>
+                                <th class="th-lg">
+                                    <a>Date
+                                        <i class="fas fa-sort ml-1"></i>
+                                    </a>
+                                </th>
+
+                                <th class="th-lg">
+                                    <a href="">Site ID
+                                        <i class="fas fa-sort ml-1"></i>
+                                    </a>
+                                </th>
+
+                                <th class="th-lg">
+                                    <a href="">Event Name
+                                        <i class="fas fa-sort ml-1"></i>
+                                    </a>
+                                </th>
+
+                                <th class="th-lg">
+                                    <a href="">Event Type
+                                        <i class="fas fa-sort ml-1"></i>
+                                    </a>
+                                </th>
+
+                                <th class="th-lg">
+                                    <div style="text-align: center;"><a href="">Actions</a></div>
+                                </th>
+
+                            </tr>
+                            </thead>
+                            <!--Table head Ends -->
+                            <!--Table body Starts -->
+                            <tbody>
+                            {{ with .Rolepool }}
+                                {{range .}}
+
+                                    <tr>
+                                        <td>{{.Id}}</td>
+                                        <td>{{.RoleName}}</td>
+                                        <td>{{.Description}}</td>
+                                        <td>
+                                            <div style="text-align: center;">
+                                                <a href="/roles/edit/{{.Id}}"
+                                                   data-toggle="tooltip" data-placement="top" title="Edit"
+                                                   class="btn btn-outline-blue btn-rounded btn-sm px-2">
+                                                    <i class="fas fa-pencil-alt mt-0"></i>
+                                                </a>
+
+                                                <a href="./roles/details/{{.Id}}"
+                                                   data-toggle="tooltip" data-placement="top" title="Details"
+                                                   class="btn btn-outline-blue btn-rounded btn-sm px-2">
+                                                    <i class="fas fa-info-circle mt-0"></i>
+                                                </a>
+
+                                            </div>
+                                        </td>
+                                    </tr>
                                 {{end}}
-                                </tbody>
-                                <!--Table body-->
-                            </table>
-                            <!--Table-->
-                        </div>
+                            {{end}}
+                            </tbody>
+                            <!--Table body-->
+                        </table>
+                        <!--Table-->
                     </div>
                 </div>
-                <!-- Table with panel -->
             </div>
-
-
-            <div class="tab-pane fade" id="follow-classic-orange" role="tabpanel"
-                 aria-labelledby="follow-tab-classic-orange">
-                <p></p>
-
-                <!-- Table with panel -->
-                <div class="card card-cascade narrower">
-
-                    <!--Card image-->
-                    <div
-                            class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
-
-                        <div>
-                            <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-                                <i class="fas fa-th-large mt-0"></i>
-                            </button>
-                            <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-                                <i class="fas fa-columns mt-0"></i>
-                            </button>
-                        </div>
-
-                        <a href="" class="white-text mx-3">Custom Site Roles</a>
-
-
-                    </div>
-
-                    <!--/Card image-->
-
-                    <div class="px-4">
-                        <div class="table-wrapper table-bordered">
-                            <!--Table-->
-                            <table class="table table-hover mb-0">
-                                <!--Table head-->
-                                <thead>
-                                <tr>
-                                    <th class="th-lg">
-                                        <a>Site Id
-                                            <i class="fas fa-sort ml-1"></i>
-                                        </a>
-                                    </th>
-
-                                    <th class="th-lg">
-                                        <a>Role ID
-                                            <i class="fas fa-sort ml-1"></i>
-                                        </a>
-                                    </th>
-
-                                    <th class="th-lg">
-                                        <a href="">Role Name
-                                            <i class="fas fa-sort ml-1"></i>
-                                        </a>
-                                    </th>
-
-                                    <th class="th-lg">
-                                        <a href="">Role Description
-                                            <i class="fas fa-sort ml-1"></i>
-                                        </a>
-                                    </th>
-
-                                    <th class="th-lg">
-                                        <div style="text-align: center;"><a href="">Actions</a></div>
-                                    </th>
-                                </tr>
-                                </thead>
-                                <!--Table head-->
-
-                                <!--Table body-->
-                                <tbody>
-
-
-                                {{ with .Roles }}
-                                    {{range .}}
-
-                                        <tr>
-                                            <td>{{.SiteId}}</td>
-                                            <td>{{.Id}}</td>
-                                            <td>{{.RoleName}}</td>
-                                            <td>{{.Description}}</td>
-                                            <td>
-                                                <div style="text-align: center;">
-                                                    <a href="/roles/roleedit/{{.Id}}"
-                                                       data-toggle="tooltip" data-placement="top" title="Edit"
-                                                       class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                        <i class="fas fa-pencil-alt mt-0"></i>
-                                                    </a>
-
-                                                    <a href="./roles/roledetails/{{.Id}}"
-                                                       data-toggle="tooltip" data-placement="top" title="Details"
-                                                       class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                        <i class="fas fa-info-circle mt-0"></i>
-                                                    </a>
-
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    {{end}}
-                                {{end}}
-
-                                </tbody>
-                                <!--Table body-->
-                            </table>
-                            <!--Table-->
-                        </div>
-                    </div>
-                </div>
-                <!-- Table with panel -->
-            </div>
+            <!-- Table with panel -->
         </div>
     </div>
 

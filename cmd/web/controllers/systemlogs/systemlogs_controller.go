@@ -1,6 +1,7 @@
 package systemlogs
 
 import (
+	"fmt"
 	"github.com/go-chi/chi"
 	"html/template"
 	"net/http"
@@ -14,6 +15,7 @@ func Systemlogs(app *config.Env) http.Handler {
 	r.Get("/", logsHandler(app))
 	r.Get("/details/{id}", logsForSiteHandler(app))
 	r.Get("/site/{siteid}", logsDetailsHandler(app))
+	r.Post("/logsites", logsSiteHandler(app))
 	return r
 
 }
@@ -133,5 +135,24 @@ func logsDetailsHandler(app *config.Env) http.HandlerFunc {
 		if err != nil {
 			app.ErrorLog.Println(err.Error())
 		}
+	}
+}
+
+func logsSiteHandler(app *config.Env) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+
+		r.ParseForm()
+		siteId := r.PostFormValue("siteId")
+		//RoleName := r.PostFormValue("roleName")
+		//Description := r.PostFormValue("description")
+		//role := roles.RolesPool{Id, RoleName, Description}
+		//_, err := roles.UpdateRolespool(role)
+		//if err != nil {
+		//	app.ServerError(w, err)
+		//}
+
+		fmt.Println(" The Site ID is ", siteId)
+		http.Redirect(w, r, "/logs", 301)
+
 	}
 }
