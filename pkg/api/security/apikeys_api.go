@@ -11,7 +11,7 @@ const apiurl = api.BASE_URL + "/security"
 
 type ApiKeys security.ApiKeys
 
-func getApiKeys() ([]ApiKeys, error) {
+func GetApiKeys() ([]ApiKeys, error) {
 	apikeys := []ApiKeys{}
 	resp, _ := api.Rest().Get(apiurl + "/all")
 	if resp.IsError() {

@@ -11,7 +11,7 @@ const url = api.BASE_URL + "/security/site"
 
 type SiteAccessKeysApi security.SiteAccessKeysApi
 
-func getSiteAccessKeysApis() ([]SiteAccessKeysApi, error) {
+func GetSiteAccessKeysApis() ([]SiteAccessKeysApi, error) {
 	siteKeys := []SiteAccessKeysApi{}
 	resp, _ := api.Rest().Get(url + "/all")
 	if resp.IsError() {

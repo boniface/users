@@ -11,7 +11,7 @@ var url = api.BASE_URL + "/mail/smtp"
 
 type SmtpConfig mail.SmtpConfig
 
-func getSmtpConfigs() ([]SmtpConfig, error) {
+func GetSmtpConfigs() ([]SmtpConfig, error) {
 	entities := []SmtpConfig{}
 	resp, _ := api.Rest().Get(url + "/all")
 	if resp.IsError() {
