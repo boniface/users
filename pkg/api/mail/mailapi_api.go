@@ -11,7 +11,7 @@ var mailurl = api.BASE_URL + "/mail/api"
 
 type MailApi mail.MailApi
 
-func getMailApis() ([]MailApi, error) {
+func GetMailApis() ([]MailApi, error) {
 	entities := []MailApi{}
 	resp, _ := api.Rest().Get(mailurl + "/all")
 	if resp.IsError() {

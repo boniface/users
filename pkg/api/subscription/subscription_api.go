@@ -11,7 +11,7 @@ const subsurl = api.BASE_URL + "/roles"
 
 type Subscription subscription.Subscription
 
-func getSubscriptions() ([]Subscription, error) {
+func GetSubscriptions() ([]Subscription, error) {
 	subscriptions := []Subscription{}
 	resp, _ := api.Rest().Get(subsurl + "/all")
 	if resp.IsError() {

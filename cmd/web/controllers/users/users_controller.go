@@ -5,6 +5,8 @@ import (
 	"html/template"
 	"net/http"
 	"users/cmd/config"
+	"users/pkg/api/users"
+
 )
 
 func Users(app *config.Env) http.Handler {
@@ -16,15 +18,32 @@ func Users(app *config.Env) http.Handler {
 
 func UsersHanler(app *config.Env) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+
+		_users, err := users.GetUsers()
+
+		if err != nil {
+			app.ServerError(w, err)
+		}
+
+		type PageData struct {
+			Users []users.User
+		}
+
+		data := PageData{_users}
+
 		files := []string{
-			"./views/html/users/users.page.html",
+			app.Path + "/users/users.page.html",
+			app.Path + "/base/base.page.html",
+			app.Path + "/base/navbar.page.html",
+			app.Path + "/base/sidebar.page.html",
+			app.Path + "/base/footer.page.html",
 		}
 		ts, err := template.ParseFiles(files...)
 		if err != nil {
 			app.ErrorLog.Println(err.Error())
 			return
 		}
-		err = ts.Execute(w, nil)
+		err = ts.ExecuteTemplate(w, "base",data)
 		if err != nil {
 			app.ErrorLog.Println(err.Error())
 		}

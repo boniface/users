@@ -11,7 +11,7 @@ var mailconfig = api.BASE_URL + "/mail"
 
 type MailConfig mail.MailConfig
 
-func getMailconfigs() ([]MailConfig, error) {
+func GetMailconfigs() ([]MailConfig, error) {
 	entities := []MailConfig{}
 	resp, _ := api.Rest().Get(mailconfig + "/all")
 	if resp.IsError() {

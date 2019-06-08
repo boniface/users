@@ -11,7 +11,7 @@ const userurl = api.BASE_URL + "/users"
 
 type User users.User
 
-func getUsers() ([]User, error) {
+func GetUsers() ([]User, error) {
 	users := []User{}
 	resp, _ := api.Rest().Get(userurl + "/all")
 	if resp.IsError() {
