@@ -22,7 +22,6 @@ func Systemlogs(app *config.Env) http.Handler {
 
 func logsHandler(app *config.Env) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-
 		logs, err := systemlogs.GetLogEvents()
 
 		if err != nil {

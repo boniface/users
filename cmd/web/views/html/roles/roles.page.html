@@ -28,25 +28,24 @@
 
     <div class="classic-tabs mx-2">
 
-        <ul class="nav nav-tabs md-tabs" id="myClassicTabOrange" role="tablist">
+        <ul class="nav nav-tabs md-tabs" id="poolsRolesTab" role="tablist">
 
             <li class="nav-item">
-                <a class="nav-link  waves-light active show" id="profile-tab-classic-orange" data-toggle="tab"
-                   href="#profile-classic-orange"
-                   role="tab" aria-controls="profile-classic-orange" aria-selected="true">
+                <a class="nav-link  waves-light active show" id="pool-roles-tab" data-toggle="tab"
+                   href="#pool-roles"
+                   role="tab" aria-controls="pool-roles" aria-selected="true">
                     <div
                             style="text-align: center;"><i
                                 class="fas fa-user-secret fa-2x pb-2"
                                 aria-hidden="true"></i></div>
                     <br>Default Roles From Pool </a>
-
             </li>
 
 
             <li class="nav-item">
-                <a class="nav-link waves-light" id="follow-tab-classic-orange" data-toggle="tab"
-                   href="#follow-classic-orange"
-                   role="tab" aria-controls="follow-classic-orange" aria-selected="false">
+                <a class="nav-link waves-light" id="roles-tab" data-toggle="tab"
+                   href="#roles"
+                   role="tab" aria-controls="roles" aria-selected="false">
                     <div
                             style="text-align: center;"><i
                                 class="fas fa-globe fa-2x pb-2"
@@ -56,18 +55,15 @@
 
         </ul>
 
-        <div class="tab-content card" id="myClassicTabContentOrange">
-            <div class="tab-pane fade active show" id="profile-classic-orange" role="tabpanel"
-                 aria-labelledby="profile-tab-classic-orange">
+        <div class="tab-content card" id="rolesTabContent">
+
+            <div class="tab-pane fade active show" id="pool-roles" role="tabpanel"
+                 aria-labelledby="pool-roles">
                 <p></p>
-
-
                 <!-- Table with panel -->
                 <div class="card card-cascade narrower">
-
                     <!--Card image-->
-                    <div
-                            class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
+                    <div class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
 
                         <div>
                             <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
@@ -77,9 +73,7 @@
                                 <i class="fas fa-columns mt-0"></i>
                             </button>
                         </div>
-
                         <a href="" class="white-text mx-3">Default Roles From Pool</a>
-
                         <div>
 
                             <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2"
@@ -171,8 +165,8 @@
             </div>
 
 
-            <div class="tab-pane fade" id="follow-classic-orange" role="tabpanel"
-                 aria-labelledby="follow-tab-classic-orange">
+            <div class="tab-pane fade" id="roles" role="tabpanel"
+                 aria-labelledby="roles">
                 <p></p>
 
                 <!-- Table with panel -->
@@ -291,7 +285,6 @@
             console.log(' This was activated !!!', event.id)
             form = document.forms['rolePoolForm'];
             form.elements["id"].value = event.id;
-            console.log(' The Form Elements ', form)
         }
 
     </script>

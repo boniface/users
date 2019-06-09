@@ -10,18 +10,18 @@
                 <span>System Logs</span>
             </h4>
 
-            <form class="d-flex justify-content-center"  name="rolePoolForm" method="POST" action="/logs/logsites" novalidate>
+            <form class="d-flex justify-content-center" name="rolePoolForm" method="POST" action="/logs/logsites"
+                  novalidate>
                 <!-- Default input -->
-
-                <select type="search" name="siteId" placeholder="Type your query" aria-label="Search" class="form-control">
+                <select type="search" name="siteId" placeholder="Type your query" aria-label="Search"
+                        class="form-control">
                     <option value="" disabled selected>Select Site</option>
                     {{with .Sites}}
                         {{range .}}
-                            <option value={{ .SiteId }}>{{ .SiteName }}</option>
+                            <option value={{.SiteId }}>{{.SiteName }}</option>
                         {{end}}
                     {{end}}
                 </select>
-
                 <button class="btn btn-primary btn-sm my-0 p" type="submit">
                     <i class="fas fa-search"></i>
                 </button>
@@ -144,55 +144,6 @@
 
 
 {{define "modal"}}
-    <div class="modal fade" id="rolespoolModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Role For the Pool </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <!-- Extended material form grid -->
-                    <form name="rolePoolForm" method="POST" action="/roles/pool/create" novalidate>
-                        <!-- Grid row -->
-                        <div class="form-row">
-                            <!-- Default input -->
-                            <div class="form-group col-md-6">
-                                <label for="id">Role ID</label>
-                                <input type="text" class="form-control" name="id" id="id" placeholder="ID">
-                            </div>
-                            <!-- Default input -->
-                            <div class="form-group col-md-6">
-                                <label for="roleName">Role Name </label>
-                                <input type="text" class="form-control" name="roleName" id="roleName"
-                                       placeholder="Role Name">
-                            </div>
-                        </div>
-                        <!-- Grid row -->
-
-                        <!-- Default input -->
-                        <div class="form-group">
-                            <label for="description">Role Description</label>
-                            <input type="text" class="form-control" id="description" name="description"
-                                   placeholder="Description for the Role ">
-                        </div>
-                        <!-- Grid row -->
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save</button>
-                        </div>
-                    </form>
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-
     <div class="modal fade" id="rolesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -233,13 +184,10 @@
                             <button type="button" class="btn btn-primary">Save</button>
                         </div>
                     </form>
-
                 </div>
-
             </div>
         </div>
     </div>
-
 {{end}}
 
 

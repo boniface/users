@@ -1,5 +1,4 @@
 {{define "header"}}
-
     <div class="card mb-4 wow fadeIn">
         <!--Card content-->
         <div class="card-body d-sm-flex justify-content-between">
@@ -7,7 +6,7 @@
             <h4 class="mb-2 mb-sm-0 pt-1">
                 <a href="/">Home Page</a>
                 <span>/</span>
-                <span>Users Roles</span>
+                <span>Mail Settings</span>
             </h4>
 
             <form class="d-flex justify-content-center">
@@ -28,39 +27,50 @@
 
     <div class="classic-tabs mx-2">
 
-        <ul class="nav nav-tabs md-tabs" id="myClassicTabOrange" role="tablist">
+
+        <ul class="nav nav-tabs md-tabs" id="mailTabs" role="tablist">
 
             <li class="nav-item">
-                <a class="nav-link  waves-light active show" id="profile-tab-classic-orange" data-toggle="tab"
-                   href="#profile-classic-orange"
-                   role="tab" aria-controls="profile-classic-orange" aria-selected="true">
-                    <div
-                            style="text-align: center;"><i
-                                class="fas fa-user-secret fa-2x pb-2"
+                <a class="nav-link  waves-light active show" id="mail-api-tab" data-toggle="tab"
+                   href="#mailapi"
+                   role="tab" aria-controls="mailapi" aria-selected="true">
+                    <div style="text-align: center;"><i
+                                class="fas fa-envelope fa-2x pb-2"
                                 aria-hidden="true"></i></div>
-                    <br>Default Roles From Pool </a>
-
+                    <br>Mail API</a>
             </li>
 
-
             <li class="nav-item">
-                <a class="nav-link waves-light" id="follow-tab-classic-orange" data-toggle="tab"
-                   href="#follow-classic-orange"
-                   role="tab" aria-controls="follow-classic-orange" aria-selected="false">
+                <a class="nav-link waves-light" id="mailConfigTab" data-toggle="tab"
+                   href="#mailconfig"
+                   role="tab" aria-controls="mailconfig" aria-selected="false">
                     <div
                             style="text-align: center;"><i
-                                class="fas fa-globe fa-2x pb-2"
+                                class="far fa-envelope-open fa-2x pb-2"
                                 aria-hidden="true"></i></div>
-                    <br>Custom Site Roles</a>
+                    <br>Mail Config</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link waves-light" id="smtpTab" data-toggle="tab"
+                   href="#smtp"
+                   role="tab" aria-controls="smtp" aria-selected="false">
+                    <div
+                            style="text-align: center;"><i
+                                class="fas fa-envelope-open fa-2x pb-2"
+                                aria-hidden="true"></i></div>
+                    <br>SMTP Config</a>
             </li>
 
         </ul>
 
-        <div class="tab-content card" id="myClassicTabContentOrange">
-            <div class="tab-pane fade active show" id="profile-classic-orange" role="tabpanel"
-                 aria-labelledby="profile-tab-classic-orange">
-                <p></p>
 
+        <div class="tab-content card" id="mailTabContent">
+
+
+            <div class="tab-pane fade active show" id="mailapi" role="tabpanel"
+                 aria-labelledby="mailapi">
+                <p></p>
 
                 <!-- Table with panel -->
                 <div class="card card-cascade narrower">
@@ -78,7 +88,7 @@
                             </button>
                         </div>
 
-                        <a href="" class="white-text mx-3">Default Roles From Pool</a>
+                        <a href="" class="white-text mx-3">Mail API Settings</a>
 
                         <div>
 
@@ -99,19 +109,109 @@
                                 <thead>
                                 <tr>
                                     <th class="th-lg">
-                                        <a>Role ID
+                                        <a>ID
+                                            <i class="fas fa-sort ml-1"></i>
+                                        </a>
+                                    </th>
+                                    <th class="th-lg">
+                                        <a href="">Sender
                                             <i class="fas fa-sort ml-1"></i>
                                         </a>
                                     </th>
 
                                     <th class="th-lg">
-                                        <a href="">Role Name
+                                        <div style="text-align: center;"><a href="">Actions</a></div>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <!--Table head Ends -->
+                                <!--Table body Starts -->
+                                <tbody>
+                                {{ with .Mail }}
+                                    {{range .}}
+
+                                        <tr>
+                                            <td>{{.Id}}</td>
+                                            <td>{{.Sender}}</td>
+                                            <td>
+                                                <div style="text-align: center;">
+                                                    <a href="/roles/edit/{{.Id}}"
+                                                       data-toggle="tooltip" data-placement="top" title="Edit"
+                                                       class="btn btn-outline-blue btn-rounded btn-sm px-2">
+                                                        <i class="fas fa-pencil-alt mt-0"></i>
+                                                    </a>
+
+                                                    <a href="./roles/details/{{.Id}}"
+                                                       data-toggle="tooltip" data-placement="top" title="Details"
+                                                       class="btn btn-outline-blue btn-rounded btn-sm px-2">
+                                                        <i class="fas fa-info-circle mt-0"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {{end}}
+                                {{end}}
+                                </tbody>
+                                <!--Table body-->
+                            </table>
+                            <!--Table-->
+                        </div>
+                    </div>
+                </div>
+                <!-- Table with panel -->
+            </div>
+
+
+            <div class="tab-pane fade active show" id="mailconfig" role="tabpanel"
+                 aria-labelledby="mailconfig">
+                <p></p>
+
+                <!-- Table with panel -->
+                <div class="card card-cascade narrower">
+
+                    <!--Card image-->
+                    <div class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
+
+                        <div>
+                            <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
+                                <i class="fas fa-th-large mt-0"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
+                                <i class="fas fa-columns mt-0"></i>
+                            </button>
+                        </div>
+                        <a href="" class="white-text mx-3">Mail Config Settings</a>
+                        <div>
+                            <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2"
+                                    data-toggle="modal" data-target="#rolespoolModal">
+                                <i class="fas fa-info-circle mt-0"> Add New</i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!--/Card image-->
+
+                    <div class="px-4">
+                        <div class="table-wrapper table-bordered">
+                            <!--Table-->
+                            <table class="table table-hover mb-0">
+                                <!--Table head-->
+                                <thead>
+                                <tr>
+                                    <th class="th-lg">
+                                        <a>Site ID
                                             <i class="fas fa-sort ml-1"></i>
                                         </a>
                                     </th>
 
                                     <th class="th-lg">
-                                        <a href="">Role Description
+                                        <a href="">Host
+                                            <i class="fas fa-sort ml-1"></i>
+                                        </a>
+                                    </th>
+
+                                    <th class="th-lg">
+                                        <a href="">Port
                                             <i class="fas fa-sort ml-1"></i>
                                         </a>
                                     </th>
@@ -126,13 +226,13 @@
                                 <!--Table head Ends -->
                                 <!--Table body Starts -->
                                 <tbody>
-                                {{ with .Rolepool }}
+                                {{ with .MailConfig }}
                                     {{range .}}
 
                                         <tr>
-                                            <td>{{.Id}}</td>
-                                            <td>{{.RoleName}}</td>
-                                            <td>{{.Description}}</td>
+                                            <td>{{.SiteId}}</td>
+                                            <td>{{.Host}}</td>
+                                            <td>{{.Port}}</td>
                                             <td>
                                                 <div style="text-align: center;">
                                                     <a href="/roles/edit/{{.Id}}"
@@ -163,8 +263,8 @@
             </div>
 
 
-            <div class="tab-pane fade" id="follow-classic-orange" role="tabpanel"
-                 aria-labelledby="follow-tab-classic-orange">
+            <div class="tab-pane fade" id="smtp" role="tabpanel"
+                 aria-labelledby="smtp">
                 <p></p>
 
                 <!-- Table with panel -->
@@ -183,7 +283,7 @@
                             </button>
                         </div>
 
-                        <a href="" class="white-text mx-3">Custom Site Roles</a>
+                        <a href="" class="white-text mx-3">SMTP Config</a>
 
 
                     </div>
@@ -198,25 +298,25 @@
                                 <thead>
                                 <tr>
                                     <th class="th-lg">
-                                        <a>Site Id
+                                        <a> Id
                                             <i class="fas fa-sort ml-1"></i>
                                         </a>
                                     </th>
 
                                     <th class="th-lg">
-                                        <a>Role ID
+                                        <a>Host
                                             <i class="fas fa-sort ml-1"></i>
                                         </a>
                                     </th>
 
                                     <th class="th-lg">
-                                        <a href="">Role Name
+                                        <a href="">Port
                                             <i class="fas fa-sort ml-1"></i>
                                         </a>
                                     </th>
 
                                     <th class="th-lg">
-                                        <a href="">Role Description
+                                        <a href="">Username
                                             <i class="fas fa-sort ml-1"></i>
                                         </a>
                                     </th>
@@ -232,14 +332,14 @@
                                 <tbody>
 
 
-                                {{ with .Roles }}
+                                {{ with .SmtpConfig }}
                                     {{range .}}
 
                                         <tr>
-                                            <td>{{.SiteId}}</td>
                                             <td>{{.Id}}</td>
-                                            <td>{{.RoleName}}</td>
-                                            <td>{{.Description}}</td>
+                                            <td>{{.Host}}</td>
+                                            <td>{{.Port}}</td>
+                                            <td>{{.Username}}</td>
                                             <td>
                                                 <div style="text-align: center;">
                                                     <a href="/roles/roleedit/{{.Id}}"
@@ -271,8 +371,6 @@
             </div>
         </div>
     </div>
-
-
 {{end}}
 
 

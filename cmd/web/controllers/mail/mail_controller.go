@@ -10,12 +10,12 @@ import (
 
 func Mail(app *config.Env) http.Handler {
 	r := chi.NewRouter()
-	r.Get("/", MailHanler(app))
+	r.Get("/", mailHanler(app))
 	return r
 
 }
 
-func MailHanler(app *config.Env) http.HandlerFunc {
+func mailHanler(app *config.Env) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 
 		mailapi, err := mail.GetMailApis()
@@ -37,13 +37,13 @@ func MailHanler(app *config.Env) http.HandlerFunc {
 		}
 
 		type PageData struct {
-			Mail    []mail.MailApi
+			Mail       []mail.MailApi
 			MailConfig []mail.MailConfig
 			SmtpConfig []mail.SmtpConfig
-			Name     string
+			Name       string
 		}
 
-		data := PageData{mailapi,mailconfig, smtpconfig,""}
+		data := PageData{mailapi, mailconfig, smtpconfig, ""}
 
 		files := []string{
 			app.Path + "/mail/mail.page.html",
