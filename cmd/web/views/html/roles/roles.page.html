@@ -135,11 +135,19 @@
                                             <td>{{.Description}}</td>
                                             <td>
                                                 <div style="text-align: center;">
+
                                                     <a href="/roles/edit/{{.Id}}"
                                                        data-toggle="tooltip" data-placement="top" title="Edit"
                                                        class="btn btn-outline-blue btn-rounded btn-sm px-2">
                                                         <i class="fas fa-pencil-alt mt-0"></i>
                                                     </a>
+
+                                                    <button type="button"
+                                                            class="btn btn-outline-blue btn-rounded btn-sm px-2"
+                                                            data-toggle="modal"
+                                                            data-target="#rolespoolModal" onclick="hello({{.}})">
+                                                        <i class="fas fa-info-circle mt-0"> Add SSNew</i>
+                                                    </button>
 
                                                     <a href="./roles/details/{{.Id}}"
                                                        data-toggle="tooltip" data-placement="top" title="Details"
@@ -277,6 +285,16 @@
 
 
 {{define "modal"}}
+
+    <script type="text/javascript">
+        function hello(event) {
+            console.log(' This was activated !!!', event.id)
+            form = document.forms['rolePoolForm'];
+            form.elements["id"].value = event.id;
+            console.log(' The Form Elements ', form)
+        }
+
+    </script>
     <div class="modal fade" id="rolespoolModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -289,7 +307,7 @@
                 </div>
                 <div class="modal-body">
                     <!-- Extended material form grid -->
-                    <form name="rolePoolForm" method="POST" action="/roles/pool/create" novalidate>
+                    <form name="rolePoolForm" id="rolePoolForm" method="POST" action="/roles/pool/create" novalidate>
                         <!-- Grid row -->
                         <div class="form-row">
                             <!-- Default input -->
