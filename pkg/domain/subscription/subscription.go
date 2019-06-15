@@ -15,7 +15,7 @@ type Subscription struct {
 	Id               string    `json:"id"`
 	SubscriptionType string    `json:"subscriptionType"`
 	Value            float64   `json:"value"`
-	Duration         string    `json:"duration"`
+	Duration         int       `json:"duration"`
 	Description      string    `json:"description"`
 	DateCreated      time.Time `json:"dateCreated"`
 	Status           string    `json:"status"`

@@ -99,19 +99,19 @@
                                 <thead>
                                 <tr>
                                     <th class="th-lg">
-                                        <a>Role ID
+                                        <a>Sub ID
                                             <i class="fas fa-sort ml-1"></i>
                                         </a>
                                     </th>
 
                                     <th class="th-lg">
-                                        <a href="">Role Name
+                                        <a href="">Sub Type
                                             <i class="fas fa-sort ml-1"></i>
                                         </a>
                                     </th>
 
                                     <th class="th-lg">
-                                        <a href="">Role Description
+                                        <a href="">Date
                                             <i class="fas fa-sort ml-1"></i>
                                         </a>
                                     </th>
@@ -126,13 +126,13 @@
                                 <!--Table head Ends -->
                                 <!--Table body Starts -->
                                 <tbody>
-                                {{ with .Rolepool }}
+                                {{ with .Subs }}
                                     {{range .}}
 
                                         <tr>
                                             <td>{{.Id}}</td>
-                                            <td>{{.RoleName}}</td>
-                                            <td>{{.Description}}</td>
+                                            <td>{{.SubscriptionType}}</td>
+                                            <td>{{.DateCreated}}</td>
                                             <td>
                                                 <div style="text-align: center;">
                                                     <a href="/roles/edit/{{.Id}}"
@@ -198,28 +198,23 @@
                                 <thead>
                                 <tr>
                                     <th class="th-lg">
-                                        <a>Site Id
+                                        <a>Sub ID
                                             <i class="fas fa-sort ml-1"></i>
                                         </a>
                                     </th>
 
                                     <th class="th-lg">
-                                        <a>Role ID
+                                        <a>Site ID
                                             <i class="fas fa-sort ml-1"></i>
                                         </a>
                                     </th>
 
                                     <th class="th-lg">
-                                        <a href="">Role Name
+                                        <a href="">Expiry Date
                                             <i class="fas fa-sort ml-1"></i>
                                         </a>
                                     </th>
 
-                                    <th class="th-lg">
-                                        <a href="">Role Description
-                                            <i class="fas fa-sort ml-1"></i>
-                                        </a>
-                                    </th>
 
                                     <th class="th-lg">
                                         <div style="text-align: center;"><a href="">Actions</a></div>
@@ -232,14 +227,13 @@
                                 <tbody>
 
 
-                                {{ with .Roles }}
+                                {{ with .SiteSubs }}
                                     {{range .}}
 
                                         <tr>
-                                            <td>{{.SiteId}}</td>
                                             <td>{{.Id}}</td>
-                                            <td>{{.RoleName}}</td>
-                                            <td>{{.Description}}</td>
+                                            <td>{{.SiteId}}</td>
+                                            <td>{{.EndDate}}</td>
                                             <td>
                                                 <div style="text-align: center;">
                                                     <a href="/roles/roleedit/{{.Id}}"

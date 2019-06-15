@@ -113,7 +113,7 @@ func (extension *CustomTimeExtension) UpdateStructDescriptor(structDescriptor *j
 			var t *time.Time
 			if str != "" {
 				var err error
-				tmp, err := time.ParseInLocation(format, str, locale)
+				tmp, err := time.ParseInLocation(format, str+"Z", locale)
 				if err != nil {
 					if _, ok := err.(*time.ParseError); ok {
 						tmp = time.Date(0, 1, 1, 0, 0, 0, 0, locale)

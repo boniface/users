@@ -7,17 +7,17 @@ import (
 	"users/pkg/domain/subscription"
 )
 
-const siteSubs = api.BASE_URL + "/subscriptions"
+const siteSubs = api.BASE_URL + "/subscriptions/site"
 
 type SiteSubscription subscription.SiteSubscription
 
-func getSiteSubscriptions() ([]SiteSubscription, error) {
+func GetSiteSubscriptions() ([]SiteSubscription, error) {
 	subscriptions := []SiteSubscription{}
 	resp, _ := api.Rest().Get(siteSubs + "/all")
 	if resp.IsError() {
 		return subscriptions, errors.New(resp.Status())
 	}
-	err := json.Unmarshal(resp.Body(), &subscriptions)
+	err := api.JSON.Unmarshal(resp.Body(), &subscriptions)
 	if err != nil {
 		return subscriptions, errors.New(resp.Status())
 	}
@@ -25,7 +25,7 @@ func getSiteSubscriptions() ([]SiteSubscription, error) {
 
 }
 
-func getSiteSubscription(id string) (SiteSubscription, error) {
+func GetSiteSubscription(id string) (SiteSubscription, error) {
 	subscription := SiteSubscription{}
 	resp, _ := api.Rest().Get(siteSubs + "/get/" + id)
 	if resp.IsError() {
@@ -39,7 +39,7 @@ func getSiteSubscription(id string) (SiteSubscription, error) {
 
 }
 
-func createSiteSubscription(entity SiteSubscription) (bool, error) {
+func CreateSiteSubscription(entity SiteSubscription) (bool, error) {
 	resp, _ := api.Rest().
 		SetBody(entity).
 		Post(siteSubs + "/create")
@@ -50,7 +50,7 @@ func createSiteSubscription(entity SiteSubscription) (bool, error) {
 	return true, nil
 
 }
-func updateSiteSubscription(entity SiteSubscription) (bool, error) {
+func UpdateSiteSubscription(entity SiteSubscription) (bool, error) {
 	resp, _ := api.Rest().
 		SetBody(entity).
 		Post(siteSubs + "/update")
@@ -62,7 +62,7 @@ func updateSiteSubscription(entity SiteSubscription) (bool, error) {
 
 }
 
-func deleteSiteSubscription(entity SiteSubscription) (bool, error) {
+func DeleteSiteSubscription(entity SiteSubscription) (bool, error) {
 	resp, _ := api.Rest().
 		SetBody(entity).
 		Post(siteSubs + "/delete")

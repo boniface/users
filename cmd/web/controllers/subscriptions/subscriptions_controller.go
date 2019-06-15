@@ -5,29 +5,50 @@ import (
 	"html/template"
 	"net/http"
 	"users/cmd/config"
-
-	subscriptions2 "users/pkg/api/subscription"
+	"users/pkg/api/subscription"
 )
 
 func Subscriptions(app *config.Env) http.Handler {
 	r := chi.NewRouter()
-	r.Get("/", SubscriptionsHanler(app))
+	r.Get("/", subscriptionsHanler(app))
 	return r
 
 }
 
-func SubscriptionsHanler(app *config.Env) http.HandlerFunc {
+func subscriptionsHanler(app *config.Env) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 
-		subscriptions, err:= subscriptions2.GetSubscriptions()
+		subs, err := subscription.GetSubscriptions()
+		if err != nil {
+			app.ServerError(w, err)
+		}
+
+		usesubs, err := subscription.GetUserSubscriptions()
+
+		if err != nil {
+
+			app.ServerError(w, err)
+		}
+
+		siteSubs, err := subscription.GetSiteSubscriptions()
 
 		if err != nil {
 			app.ServerError(w, err)
 		}
-		type PageData struct {
-			Subscription []subscriptions2.Subscription
+
+		subTypes, err := subscription.GetSubscriptionTypes()
+
+		if err != nil {
+			app.ServerError(w, err)
 		}
-		data := PageData{subscriptions}
+
+		type PageData struct {
+			Subs     []subscription.Subscription
+			SubTypes []subscription.SubscriptionTypes
+			SiteSubs []subscription.SiteSubscription
+			UserSubs []subscription.UserSubscriptions
+		}
+		data := PageData{subs, subTypes, siteSubs, usesubs}
 
 		files := []string{
 			app.Path + "/subscriptions/subscriptions.page.html",
