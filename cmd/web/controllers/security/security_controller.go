@@ -1,6 +1,7 @@
 package security
 
 import (
+	"fmt"
 	"github.com/go-chi/chi"
 	"html/template"
 	"net/http"
@@ -10,19 +11,13 @@ import (
 
 func Security(app *config.Env) http.Handler {
 	r := chi.NewRouter()
-	r.Get("/", SecurityHanler(app))
+	r.Get("/", securityHandler(app))
 	return r
 
 }
 
-func SecurityHanler(app *config.Env) http.HandlerFunc {
+func securityHandler(app *config.Env) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-
-		apiKeys, err := security.GetApiKeys()
-
-		if err != nil {
-			app.ServerError(w, err)
-		}
 
 		siteAccessKeys, err := security.GetSiteAccessKeysApis()
 
@@ -30,10 +25,16 @@ func SecurityHanler(app *config.Env) http.HandlerFunc {
 			app.ServerError(w, err)
 		}
 
+		apiKeys, err := security.GetApiKeys()
+
+		if err != nil {
+			app.ServerError(w, err)
+		}
+
 		type PageData struct {
-			apiKey             []security.ApiKeys
-			siteAccessKeysApis []security.SiteAccessKeysApi
-			Name               string
+			ApiKey  []security.ApiKeys
+			SiteKey []security.SiteAccessKeysApi
+			Name    string
 		}
 		data := PageData{apiKeys, siteAccessKeys, " "}
 
@@ -46,6 +47,7 @@ func SecurityHanler(app *config.Env) http.HandlerFunc {
 		}
 		ts, err := template.ParseFiles(files...)
 		if err != nil {
+			fmt.Println(" it Breaks here 3")
 			app.ErrorLog.Println(err.Error())
 			return
 		}

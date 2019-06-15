@@ -1,8 +1,8 @@
 package security
 
 import (
-	"encoding/json"
 	"errors"
+	"fmt"
 	"users/pkg/api"
 	"users/pkg/domain/security"
 )
@@ -17,8 +17,10 @@ func GetApiKeys() ([]ApiKeys, error) {
 	if resp.IsError() {
 		return apikeys, errors.New(resp.Status())
 	}
-	err := json.Unmarshal(resp.Body(), &apikeys)
+
+	err := api.JSON.Unmarshal(resp.Body(), &apikeys)
 	if err != nil {
+		fmt.Println(" There is an Error ", err)
 		return apikeys, errors.New(resp.Status())
 	}
 	return apikeys, nil
@@ -31,7 +33,7 @@ func getApiKey(id string) (ApiKeys, error) {
 	if resp.IsError() {
 		return apikey, errors.New(resp.Status())
 	}
-	err := json.Unmarshal(resp.Body(), &apikey)
+	err := api.JSON.Unmarshal(resp.Body(), &apikey)
 	if err != nil {
 		return apikey, errors.New(resp.Status())
 	}

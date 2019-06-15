@@ -17,7 +17,7 @@ func GetUsers() ([]User, error) {
 	if resp.IsError() {
 		return users, errors.New(resp.Status())
 	}
-	err := json.Unmarshal(resp.Body(), &users)
+	err := api.JSON.Unmarshal(resp.Body(), &users)
 	if err != nil {
 		return users, errors.New(resp.Status())
 	}
