@@ -67,7 +67,7 @@
 
             <li class="nav-item">
                 <a class="nav-link waves-light" id="follow-tab-classic-orange" data-toggle="tab"
-                   href="#follow-classic-orange"
+                   href="#subscriptionTypeTab"
                    role="tab" aria-controls="follow-classic-orange" aria-selected="false">
                     <div
                             style="text-align: center;"><i
@@ -104,12 +104,12 @@
                         <a href="" class="white-text mx-3">Subscriptions</a>
 
                         <div>
-
                             <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2"
                                     data-toggle="modal" data-target="#rolespoolModal">
                                 <i class="fas fa-info-circle mt-0"> Add New</i>
                             </button>
                         </div>
+
                     </div>
 
                     <!--/Card image-->
@@ -394,8 +394,8 @@
 
             <!-- Subscription Types -->
 
-            <div class="tab-pane fade" id="follow-classic-orange" role="tabpanel"
-                 aria-labelledby="follow-tab-classic-orange">
+            <div class="tab-pane fade" id="subscriptionTypeTab" role="tabpanel"
+                 aria-labelledby="subscriptionTypeTab">
                 <p></p>
 
                 <!-- Table with panel -->
@@ -414,7 +414,13 @@
                             </button>
                         </div>
 
-                        <a href="" class="white-text mx-3">Subsription Types</a>
+                        <a href="" class="white-text mx-3">Subscription Types</a>
+                        <div>
+                            <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2"
+                                    data-toggle="modal" data-target="#subscriptionTypeModal">
+                                <i class="fas fa-info-circle mt-0"> New Subscription Type</i>
+                            </button>
+                        </div>
 
 
                     </div>
@@ -429,23 +435,10 @@
                                 <thead>
                                 <tr>
                                     <th class="th-lg">
-                                        <a>Sub ID
+                                        <a>Subscription Type
                                             <i class="fas fa-sort ml-1"></i>
                                         </a>
                                     </th>
-
-                                    <th class="th-lg">
-                                        <a>Site ID
-                                            <i class="fas fa-sort ml-1"></i>
-                                        </a>
-                                    </th>
-
-                                    <th class="th-lg">
-                                        <a href="">Expiry Date
-                                            <i class="fas fa-sort ml-1"></i>
-                                        </a>
-                                    </th>
-
 
                                     <th class="th-lg">
                                         <div style="text-align: center;"><a href="">Actions</a></div>
@@ -458,26 +451,26 @@
                                 <tbody>
 
 
-                                {{ with .SiteSubs }}
+                                {{ with .SubTypes }}
                                     {{range .}}
 
                                         <tr>
-                                            <td>{{.Id}}</td>
-                                            <td>{{.SiteId}}</td>
-                                            <td>{{.EndDate}}</td>
+                                            <td>{{.Name}}</td>
                                             <td>
                                                 <div style="text-align: center;">
-                                                    <a href="/roles/roleedit/{{.Id}}"
-                                                       data-toggle="tooltip" data-placement="top" title="Edit"
-                                                       class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                        <i class="fas fa-pencil-alt mt-0"></i>
-                                                    </a>
+                                                    <button type="button"
+                                                            class="btn btn-outline-blue btn-rounded btn-sm px-2"
+                                                            data-toggle="modal"
+                                                            data-target="#subscriptionTypeModal" onclick="editSubscriptionType({{.}})">
+                                                        <i class="fas fa-pencil-alt mt-0"> Edit</i>
+                                                    </button>
 
-                                                    <a href="./roles/roledetails/{{.Id}}"
-                                                       data-toggle="tooltip" data-placement="top" title="Details"
-                                                       class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                        <i class="fas fa-info-circle mt-0"></i>
-                                                    </a>
+                                                    <button type="button"
+                                                            class="btn btn-outline-blue btn-rounded btn-sm px-2"
+                                                            data-toggle="modal"
+                                                            data-target="#rolespoolModal" onclick="hello({{.}})">
+                                                        <i class="fas fa-pencil-alt mt-0"> Details</i>
+                                                    </button>
 
                                                 </div>
                                             </td>
@@ -494,11 +487,6 @@
                 </div>
                 <!-- Table with panel -->
             </div>
-
-
-
-
-
         </div>
     </div>
 
@@ -556,44 +544,45 @@
     </div>
 
 
-    <div class="modal fade" id="rolesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="subscriptionTypeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Roles For the Site </h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Subscription Type  </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <!-- Extended material form grid -->
-                    <form>
+                    <form name="subscriptionTypeForm" id="subscriptionTypeForm" method="POST" action="/subscriptions/types/create" novalidate>
                         <!-- Grid row -->
-                        <div class="form-row">
+                        <div class="form-row" hidden>
                             <!-- Default input -->
                             <div class="form-group col-md-6">
-                                <label for="inputEmail4">Role ID</label>
-                                <input type="text" class="form-control" id="inputEmail4" placeholder="Email">
-                            </div>
-                            <!-- Default input -->
-                            <div class="form-group col-md-6">
-                                <label for="inputPassword4">Role Name </label>
-                                <input type="text" class="form-control" id="inputPassword4" placeholder="Password">
+                                <label for="subscriptionID">SubscriptionID</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="id"
+                                       placeholder="Subscription Type ID">
                             </div>
                         </div>
                         <!-- Grid row -->
 
                         <!-- Default input -->
                         <div class="form-group">
-                            <label for="inputAddress">Role Description</label>
-                            <input type="text" class="form-control" id="inputAddress"
-                                   placeholder="Description for the Role ">
+                            <label for="subscriptionType">Subscription Type </label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="subscritionTypeName"
+                                   name="subscritionTypeName"
+                                   placeholder="Description for Subscription Type ">
                         </div>
                         <!-- Grid row -->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
                         </div>
                     </form>
 
@@ -603,7 +592,18 @@
         </div>
     </div>
 
+    <script type="text/javascript">
+        function editSubscriptionType(event) {
+            form = document.forms['subscriptionTypeForm'];
+            form.elements["id"].value = event.id;
+            form.elements["subscritionTypeName"].value = event.name;
+        }
+    </script>
+
+
 {{end}}
+
+
 
 
 
