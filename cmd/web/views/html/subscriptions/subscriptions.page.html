@@ -45,28 +45,6 @@
 
             <li class="nav-item">
                 <a class="nav-link waves-light" id="follow-tab-classic-orange" data-toggle="tab"
-                   href="#follow-classic-orange"
-                   role="tab" aria-controls="follow-classic-orange" aria-selected="false">
-                    <div
-                            style="text-align: center;"><i
-                                class="fas fa-money-check-alt fa-2x pb-2"
-                                aria-hidden="true"></i></div>
-                    <br>Site Subscriptions</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link waves-light" id="follow-tab-classic-orange" data-toggle="tab"
-                   href="#follow-classic-orange"
-                   role="tab" aria-controls="follow-classic-orange" aria-selected="false">
-                    <div
-                            style="text-align: center;"><i
-                                class="fas fa-hand-holding-usd fa-2x pb-2"
-                                aria-hidden="true"></i></div>
-                    <br>User Subscriptions</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link waves-light" id="follow-tab-classic-orange" data-toggle="tab"
                    href="#subscriptionTypeTab"
                    role="tab" aria-controls="follow-classic-orange" aria-selected="false">
                     <div
@@ -105,8 +83,8 @@
 
                         <div>
                             <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2"
-                                    data-toggle="modal" data-target="#rolespoolModal">
-                                <i class="fas fa-info-circle mt-0"> Add New</i>
+                                    data-toggle="modal" data-target="#subscriptionModal">
+                                <i class="fas fa-info-circle mt-0"> New Subscription</i>
                             </button>
                         </div>
 
@@ -134,7 +112,7 @@
                                     </th>
 
                                     <th class="th-lg">
-                                        <a href="">Date
+                                        <a href="">Date Created
                                             <i class="fas fa-sort ml-1"></i>
                                         </a>
                                     </th>
@@ -155,20 +133,24 @@
                                         <tr>
                                             <td>{{.Id}}</td>
                                             <td>{{.SubscriptionType}}</td>
-                                            <td>{{.DateCreated}}</td>
+                                            <td>{{.DateCreated.Format "02 Jan 2006 Time: 15:04"}}</td>
                                             <td>
                                                 <div style="text-align: center;">
-                                                    <a href="/roles/edit/{{.Id}}"
-                                                       data-toggle="tooltip" data-placement="top" title="Edit"
-                                                       class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                        <i class="fas fa-pencil-alt mt-0"></i>
-                                                    </a>
+                                                    <button type="button"
+                                                            class="btn btn-outline-blue btn-rounded btn-sm px-2"
+                                                            data-toggle="modal"
+                                                            data-target="#subscriptionModal"
+                                                            onclick="editSubscription({{.}})">
+                                                        <i class="fas fa-pencil-alt mt-0"> Edit</i>
+                                                    </button>
 
-                                                    <a href="./roles/details/{{.Id}}"
-                                                       data-toggle="tooltip" data-placement="top" title="Details"
-                                                       class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                        <i class="fas fa-info-circle mt-0"></i>
-                                                    </a>
+                                                    <button type="button"
+                                                            class="btn btn-outline-blue btn-rounded btn-sm px-2"
+                                                            data-toggle="modal"
+                                                            data-target="#subscriptionDetailModal"
+                                                            onclick="subscriptionDetails({{.}})">
+                                                        <i class="fas fa-info-circle mt-0"> Details</i>
+                                                    </button>
 
                                                 </div>
                                             </td>
@@ -184,213 +166,6 @@
                 </div>
                 <!-- Table with panel -->
             </div>
-
-
-            <div class="tab-pane fade" id="follow-classic-orange" role="tabpanel"
-                 aria-labelledby="follow-tab-classic-orange">
-                <p></p>
-
-                <!-- Table with panel -->
-                <div class="card card-cascade narrower">
-
-                    <!--Card image-->
-                    <div
-                            class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
-
-                        <div>
-                            <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-                                <i class="fas fa-th-large mt-0"></i>
-                            </button>
-                            <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-                                <i class="fas fa-columns mt-0"></i>
-                            </button>
-                        </div>
-
-                        <a href="" class="white-text mx-3">Site Subscriptions</a>
-
-
-                    </div>
-
-                    <!--/Card image-->
-
-                    <div class="px-4">
-                        <div class="table-wrapper table-bordered">
-                            <!--Table-->
-                            <table class="table table-hover mb-0">
-                                <!--Table head-->
-                                <thead>
-                                <tr>
-                                    <th class="th-lg">
-                                        <a>Sub ID
-                                            <i class="fas fa-sort ml-1"></i>
-                                        </a>
-                                    </th>
-
-                                    <th class="th-lg">
-                                        <a>Site ID
-                                            <i class="fas fa-sort ml-1"></i>
-                                        </a>
-                                    </th>
-
-                                    <th class="th-lg">
-                                        <a href="">Expiry Date
-                                            <i class="fas fa-sort ml-1"></i>
-                                        </a>
-                                    </th>
-
-
-                                    <th class="th-lg">
-                                        <div style="text-align: center;"><a href="">Actions</a></div>
-                                    </th>
-                                </tr>
-                                </thead>
-                                <!--Table head-->
-
-                                <!--Table body-->
-                                <tbody>
-
-
-                                {{ with .SiteSubs }}
-                                    {{range .}}
-
-                                        <tr>
-                                            <td>{{.Id}}</td>
-                                            <td>{{.SiteId}}</td>
-                                            <td>{{.EndDate}}</td>
-                                            <td>
-                                                <div style="text-align: center;">
-                                                    <a href="/roles/roleedit/{{.Id}}"
-                                                       data-toggle="tooltip" data-placement="top" title="Edit"
-                                                       class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                        <i class="fas fa-pencil-alt mt-0"></i>
-                                                    </a>
-
-                                                    <a href="./roles/roledetails/{{.Id}}"
-                                                       data-toggle="tooltip" data-placement="top" title="Details"
-                                                       class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                        <i class="fas fa-info-circle mt-0"></i>
-                                                    </a>
-
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    {{end}}
-                                {{end}}
-
-                                </tbody>
-                                <!--Table body-->
-                            </table>
-                            <!--Table-->
-                        </div>
-                    </div>
-                </div>
-                <!-- Table with panel -->
-            </div>
-
-
-            <!-- User Subscriptions -->
-
-            <div class="tab-pane fade" id="follow-classic-orange" role="tabpanel"
-                 aria-labelledby="follow-tab-classic-orange">
-                <p></p>
-
-                <!-- Table with panel -->
-                <div class="card card-cascade narrower">
-
-                    <!--Card image-->
-                    <div
-                            class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
-
-                        <div>
-                            <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-                                <i class="fas fa-th-large mt-0"></i>
-                            </button>
-                            <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
-                                <i class="fas fa-columns mt-0"></i>
-                            </button>
-                        </div>
-
-                        <a href="" class="white-text mx-3">User Subscriptions</a>
-
-
-                    </div>
-
-                    <!--/Card image-->
-
-                    <div class="px-4">
-                        <div class="table-wrapper table-bordered">
-                            <!--Table-->
-                            <table class="table table-hover mb-0">
-                                <!--Table head-->
-                                <thead>
-                                <tr>
-                                    <th class="th-lg">
-                                        <a>Sub ID
-                                            <i class="fas fa-sort ml-1"></i>
-                                        </a>
-                                    </th>
-
-                                    <th class="th-lg">
-                                        <a>Site ID
-                                            <i class="fas fa-sort ml-1"></i>
-                                        </a>
-                                    </th>
-
-                                    <th class="th-lg">
-                                        <a href="">Expiry Date
-                                            <i class="fas fa-sort ml-1"></i>
-                                        </a>
-                                    </th>
-
-
-                                    <th class="th-lg">
-                                        <div style="text-align: center;"><a href="">Actions</a></div>
-                                    </th>
-                                </tr>
-                                </thead>
-                                <!--Table head-->
-
-                                <!--Table body-->
-                                <tbody>
-
-
-                                {{ with .SiteSubs }}
-                                    {{range .}}
-
-                                        <tr>
-                                            <td>{{.Id}}</td>
-                                            <td>{{.SiteId}}</td>
-                                            <td>{{.EndDate}}</td>
-                                            <td>
-                                                <div style="text-align: center;">
-                                                    <a href="/roles/roleedit/{{.Id}}"
-                                                       data-toggle="tooltip" data-placement="top" title="Edit"
-                                                       class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                        <i class="fas fa-pencil-alt mt-0"></i>
-                                                    </a>
-
-                                                    <a href="./roles/roledetails/{{.Id}}"
-                                                       data-toggle="tooltip" data-placement="top" title="Details"
-                                                       class="btn btn-outline-blue btn-rounded btn-sm px-2">
-                                                        <i class="fas fa-info-circle mt-0"></i>
-                                                    </a>
-
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    {{end}}
-                                {{end}}
-
-                                </tbody>
-                                <!--Table body-->
-                            </table>
-                            <!--Table-->
-                        </div>
-                    </div>
-                </div>
-                <!-- Table with panel -->
-            </div>
-
 
             <!-- Subscription Types -->
 
@@ -421,8 +196,6 @@
                                 <i class="fas fa-info-circle mt-0"> New Subscription Type</i>
                             </button>
                         </div>
-
-
                     </div>
 
                     <!--/Card image-->
@@ -434,6 +207,12 @@
                                 <!--Table head-->
                                 <thead>
                                 <tr>
+
+                                    <th class="th-lg">
+                                        <a>Subscription ID
+                                            <i class="fas fa-sort ml-1"></i>
+                                        </a>
+                                    </th>
                                     <th class="th-lg">
                                         <a>Subscription Type
                                             <i class="fas fa-sort ml-1"></i>
@@ -455,21 +234,24 @@
                                     {{range .}}
 
                                         <tr>
+                                            <td>{{.Id}}</td>
                                             <td>{{.Name}}</td>
                                             <td>
                                                 <div style="text-align: center;">
                                                     <button type="button"
                                                             class="btn btn-outline-blue btn-rounded btn-sm px-2"
                                                             data-toggle="modal"
-                                                            data-target="#subscriptionTypeModal" onclick="editSubscriptionType({{.}})">
+                                                            data-target="#subscriptionTypeModal"
+                                                            onclick="editSubscriptionType({{.}})">
                                                         <i class="fas fa-pencil-alt mt-0"> Edit</i>
                                                     </button>
 
                                                     <button type="button"
                                                             class="btn btn-outline-blue btn-rounded btn-sm px-2"
                                                             data-toggle="modal"
-                                                            data-target="#rolespoolModal" onclick="hello({{.}})">
-                                                        <i class="fas fa-pencil-alt mt-0"> Details</i>
+                                                            data-target="#subscriptionTypeDetailModal"
+                                                            onclick="subscriptionTypeDetails({{.}})">
+                                                        <i class="fas fa-info-circle mt-0"> Details</i>
                                                     </button>
 
                                                 </div>
@@ -495,40 +277,104 @@
 
 
 {{define "modal"}}
-    <div class="modal fade" id="rolespoolModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+
+    <div class="modal fade" id="subscriptionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Role For the Pool </h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Subscription </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <!-- Extended material form grid -->
-                    <form name="rolePoolForm" method="POST" action="/roles/pool/create" novalidate>
-                        <!-- Grid row -->
+                    <form name="subscriptionlForm" method="POST" action="/subscriptions/create" novalidate>
                         <div class="form-row">
                             <!-- Default input -->
                             <div class="form-group col-md-6">
-                                <label for="id">Role ID</label>
-                                <input type="text" class="form-control" name="id" id="id" placeholder="ID">
+                                <label for="id">Subscription ID</label>
+                                <select type="text" name="id" placeholder="ID"
+                                        aria-label="Search"
+                                        class="form-control">
+                                    <option value="" disabled selected>Select Type</option>
+                                    <option value="SUB_START"> START</option>
+                                    <option value="SUB_ONE_MONTH"> ONE MONTH</option>
+                                    <option value="SUB_THREE_MONTH"> THREE MONTHS</option>
+                                    <option value="SUB_SIX_MONTH"> SIX MONTHS</option>
+                                    <option value="SUB_ONE_YEAR"> ONE YEAR</option>
+                                    <option value="SUB_PERMANENT"> PERMANENT</option>
+                                </select>
+
                             </div>
                             <!-- Default input -->
                             <div class="form-group col-md-6">
-                                <label for="roleName">Role Name </label>
-                                <input type="text" class="form-control" name="roleName" id="roleName"
-                                       placeholder="Role Name">
+                                <label for="roleName">Subscription Type </label>
+
+                                <select type="search" name="subscriptionType" placeholder="Subscription Type"
+                                        aria-label="Search"
+                                        class="form-control">
+                                    <option value="" disabled selected>Select Type</option>
+                                    {{with .SubTypes}}
+                                        {{range .}}
+                                            <option value={{.Id }}>{{.Name }}</option>
+                                        {{end}}
+                                    {{end}}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <!-- Default input -->
+                            <div class="form-group col-md-6">
+                                <label for="id">Monetary Value</label>
+                                <input type="text" class="form-control" name="SubscriptionValue" id="SubscriptionValue"
+                                       placeholder="Subscription Value">
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="roleName">Subscription Duration </label>
+                                <select type="number" name="duration" placeholder="Subscription Duration"
+                                        aria-label="Search"
+                                        class="form-control">
+                                    <option value="" disabled selected>Select Type</option>
+                                    <option value="14400"> START</option>
+                                    <option value="43800"> ONE MONTH</option>
+                                    <option value="131400"> THREE MONTHS</option>
+                                    <option value="262800"> SIX MONTHS</option>
+                                    <option value="525601"> ONE YEAR</option>
+                                    <option value="525601000"> PERMANENT</option>
+                                </select>
+
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <!-- Default input -->
+                            <div class="form-group col-md-6">
+                                <label for="id">Creation Date</label>
+                                <input type="date" class="form-control" name="dateCreated" id="id" placeholder="Date ">
+                            </div>
+                            <!-- Default input -->
+                            <div class="form-group col-md-6">
+                                <label for="roleName">Status </label>
+                                <select type="text" name="status" placeholder="Subscription Status"
+                                        aria-label="Search"
+                                        class="form-control">
+                                    <option value="" disabled selected>Select Type</option>
+                                    <option value="ACTIVE"> ACTIVE</option>
+                                    <option value="INACTIVE"> INACTIVE</option>
+                                </select>
                             </div>
                         </div>
                         <!-- Grid row -->
 
                         <!-- Default input -->
                         <div class="form-group">
-                            <label for="description">Role Description</label>
+                            <label for="description">Description</label>
                             <input type="text" class="form-control" id="description" name="description"
-                                   placeholder="Description for the Role ">
+                                   placeholder="Description for the Subscription ">
                         </div>
                         <!-- Grid row -->
                         <div class="modal-footer">
@@ -544,21 +390,74 @@
     </div>
 
 
-    <div class="modal fade" id="subscriptionTypeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="subscriptionDetailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Subscription Type  </h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Details of The Subscription </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <!-- Extended material form grid -->
-                    <form name="subscriptionTypeForm" id="subscriptionTypeForm" method="POST" action="/subscriptions/types/create" novalidate>
+
+
+                    <ul class="list-group">
+                        <li class="list-group-item active">
+                            <div class="md-v-line"></div>
+                            <i class="fas fas fa-keyboard mr-4 pr-3"></i> Details
+                        </li>
+                        <li class="list-group-item">
+                            <div class="md-v-line" id="subscriptionDescription"></div>
+                        </li>
+
+                        <li class="list-group-item">
+                            <div class="md-v-line" id="subscriptionID"></div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="md-v-line" id="SubType"></div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="md-v-line" id="subscriptionValue"></div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="md-v-line" id="subscriptionDuration"></div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="md-v-line" id="subscriptionDateCreated"></div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="md-v-line" id="subscriptionStatus"></div>
+                        </li>
+
+                    </ul>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="subscriptionTypeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Subscription Type </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Extended material form grid -->
+                    <form name="subscriptionTypeForm" id="subscriptionTypeForm" method="POST"
+                          action="/subscriptions/types/create" novalidate>
                         <!-- Grid row -->
-                        <div class="form-row" hidden>
+                        <div class="form-row">
                             <!-- Default input -->
                             <div class="form-group col-md-6">
                                 <label for="subscriptionID">SubscriptionID</label>
@@ -592,12 +491,67 @@
         </div>
     </div>
 
+    <div class="modal fade" id="subscriptionTypeDetailModal" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Subscription Type Details </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group">
+                        <li class="list-group-item active">
+                            <div class="md-v-line"></div>
+                            <i class="fas fas fa-keyboard mr-4 pr-3"></i> Details
+                        </li>
+                        <li class="list-group-item">
+                            <div class="md-v-line" id="subscriptionTypeID"></div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="md-v-line" id="subscriptionTypeName"></div>
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <script type="text/javascript">
+
         function editSubscriptionType(event) {
             form = document.forms['subscriptionTypeForm'];
             form.elements["id"].value = event.id;
             form.elements["subscritionTypeName"].value = event.name;
         }
+
+        function subscriptionTypeDetails(event) {
+            document.getElementById('subscriptionTypeID').innerHTML = "<i class=\"fas fa-info-circle mr-5\"> ID:</i>" + event.id;
+            document.getElementById('subscriptionTypeName').innerHTML = "<i class=\"fas fa-info-circle mr-5\"> NAME:</i>" + event.name;
+        }
+
+        function editSubscription(event) {
+            form = document.forms['subscriptionForm'];
+            form.elements["id"].value = event.id;
+            form.elements["subscritionTypeName"].value = event.name;
+        }
+
+        function subscriptionDetails(event) {
+            document.getElementById('subscriptionDescription').innerHTML = "<i class=\"fas fa-info-circle mr-5\"> Description:</i>" + event.description;
+            document.getElementById('subscriptionID').innerHTML = "<i class=\"fas fa-info-circle mr-5\"> ID:</i>" + event.id;
+            document.getElementById('SubType').innerHTML = "<i class=\"fas fa-info-circle mr-5\"> Sub Type:</i>" + event.subscriptionType;
+            document.getElementById('subscriptionValue').innerHTML = "<i class=\"fas fa-info-circle mr-5\"> Value:</i>" + event.value;
+            document.getElementById('subscriptionDuration').innerHTML = "<i class=\"fas fa-info-circle mr-5\"> Duration:</i>" + event.duration;
+            document.getElementById('subscriptionDateCreated').innerHTML = "<i class=\"fas fa-info-circle mr-5\"> Date Created:</i>" + new Date(event.dateCreated).toISOString().slice(0, 10);
+            ;
+            document.getElementById('subscriptionStatus').innerHTML = "<i class=\"fas fa-info-circle mr-5\"> Status:</i>" + event.status;
+        }
+
     </script>
 
 

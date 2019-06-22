@@ -1,10 +1,12 @@
 package subscriptions
 
 import (
+	"fmt"
 	"github.com/go-chi/chi"
-	"github.com/rs/xid"
 	"html/template"
 	"net/http"
+	"strconv"
+	"time"
 	"users/cmd/config"
 	"users/pkg/api/subscription"
 )
@@ -14,16 +16,17 @@ func Subscriptions(app *config.Env) http.Handler {
 	r.Get("/", subscriptionsHanler(app))
 	r.Get("/", subscriptionsHanler(app))
 	// SubscritionType
-	r.Post("/types/create", createSubscriptionTypeRoleHandler(app))
-	r.Post("/types/update", updateSubscriptionTypeRoleHandler(app))
+	r.Post("/types/create", createSubscriptionTypeHandler(app))
+	r.Post("/create", createSubscriptionHandler(app))
 	return r
 
 }
 
-func createSubscriptionTypeRoleHandler(app *config.Env) http.HandlerFunc {
+func createSubscriptionTypeHandler(app *config.Env) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		r.ParseForm()
-		id := xid.New().String()
+		//id := xid.New().String()
+		id := r.PostFormValue("id")
 		subscritionTypeName := r.PostFormValue("subscritionTypeName")
 		subscriptionType := subscription.SubscriptionTypes{id, subscritionTypeName}
 		_, err := subscription.CreateSubscriptionType(subscriptionType)
@@ -34,16 +37,28 @@ func createSubscriptionTypeRoleHandler(app *config.Env) http.HandlerFunc {
 	}
 
 }
-func updateSubscriptionTypeRoleHandler(app *config.Env) http.HandlerFunc {
+func createSubscriptionHandler(app *config.Env) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		r.ParseForm()
+
 		id := r.PostFormValue("id")
-		name := r.PostFormValue("description")
-		subscriptionType := subscription.SubscriptionTypes{id, name}
-		_, err := subscription.DeleteSubscriptionType(subscriptionType)
+		subscriptionType := r.PostFormValue("subscriptionType")
+
+		value, _ := strconv.ParseFloat(r.PostFormValue("SubscriptionValue"), 10)
+		duration, _ := strconv.Atoi(r.PostFormValue("duration"))
+		description := r.PostFormValue("description")
+		dateCreated := time.Now()
+		status := r.PostFormValue("status")
+
+		fmt.Println("The Time is ", r.PostFormValue("dateCreated"))
+		fmt.Println(" the VAlue for Site ", r.PostFormValue("SubscriptionValue"))
+
+		sub := subscription.Subscription{id, subscriptionType, value, duration, description, dateCreated, status}
+		_, err := subscription.CreateSubscription(sub)
 		if err != nil {
 			app.ServerError(w, err)
 		}
+		fmt.Println(" the Data in IS ", sub)
 		http.Redirect(w, r, "/subscriptions", 301)
 	}
 }
