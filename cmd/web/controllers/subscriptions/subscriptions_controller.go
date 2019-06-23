@@ -14,7 +14,6 @@ import (
 func Subscriptions(app *config.Env) http.Handler {
 	r := chi.NewRouter()
 	r.Get("/", subscriptionsHanler(app))
-	r.Get("/", subscriptionsHanler(app))
 	// SubscritionType
 	r.Post("/types/create", createSubscriptionTypeHandler(app))
 	r.Post("/create", createSubscriptionHandler(app))

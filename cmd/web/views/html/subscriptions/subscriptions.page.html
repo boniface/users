@@ -290,7 +290,7 @@
                 </div>
                 <div class="modal-body">
                     <!-- Extended material form grid -->
-                    <form name="subscriptionlForm" method="POST" action="/subscriptions/create" novalidate>
+                    <form name="subscriptionForm" method="POST" action="/subscriptions/create" novalidate>
                         <div class="form-row">
                             <!-- Default input -->
                             <div class="form-group col-md-6">
@@ -329,7 +329,7 @@
                             <!-- Default input -->
                             <div class="form-group col-md-6">
                                 <label for="id">Monetary Value</label>
-                                <input type="text" class="form-control" name="SubscriptionValue" id="SubscriptionValue"
+                                <input type="number" class="form-control" name="SubscriptionValue" id="SubscriptionValue"
                                        placeholder="Subscription Value">
                             </div>
 
@@ -353,8 +353,8 @@
                         <div class="form-row">
                             <!-- Default input -->
                             <div class="form-group col-md-6">
-                                <label for="id">Creation Date</label>
-                                <input type="date" class="form-control" name="dateCreated" id="id" placeholder="Date ">
+                                <label for="description">Description</label>
+                                <input type="text" class="form-control" name="description" id="description" placeholder="Description ">
                             </div>
                             <!-- Default input -->
                             <div class="form-group col-md-6">
@@ -371,10 +371,10 @@
                         <!-- Grid row -->
 
                         <!-- Default input -->
-                        <div class="form-group">
-                            <label for="description">Description</label>
-                            <input type="text" class="form-control" id="description" name="description"
-                                   placeholder="Description for the Subscription ">
+                        <div class="form-group" hidden>
+                            <label for="date">Date</label>
+                            <input type="date" class="form-control" id="dateCreated" name="dateCreated"
+                                   placeholder="Description for the Date ">
                         </div>
                         <!-- Grid row -->
                         <div class="modal-footer">
@@ -536,9 +536,16 @@
         }
 
         function editSubscription(event) {
-            form = document.forms['subscriptionForm'];
+            console.log('The Events are ', event)
+            var form = document.forms['subscriptionForm'];
             form.elements["id"].value = event.id;
-            form.elements["subscritionTypeName"].value = event.name;
+            form.elements["status"].value = event.status;
+            form.elements["dateCreated"].value = event.dateCreated;
+            form.elements["duration"].value = event.duration;
+            form.elements["SubscriptionValue"].value = event.value;
+            form.elements["subscriptionType"].value = event.subscriptionType;
+            form.elements["description"].value = event.description;
+
         }
 
         function subscriptionDetails(event) {

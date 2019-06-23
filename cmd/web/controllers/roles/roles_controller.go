@@ -83,7 +83,7 @@ func DetailPoolRoleHandler(app *config.Env) http.HandlerFunc {
 		}
 		data := PageData{role}
 		files := []string{
-			app.Path + "/roles/rolespool/details.page.html",
+			app.Path + "/roles/rolespool/site.page.html",
 			app.Path + "/base/header.page.html",
 			app.Path + "/base/base.page.html",
 			app.Path + "/base/navbar.page.html",

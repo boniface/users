@@ -30,6 +30,8 @@ func Controllers(env *config.Env) http.Handler {
 	mux.Mount("/subscriptions", subscriptions.Subscriptions(env))
 	mux.Mount("/logs", systemlogs.Systemlogs(env))
 	mux.Mount("/users", users.UsersHanler(env))
+	mux.Mount("/usersubscriptions", subscriptions.UserSubscriptions(env))
+	mux.Mount("/sitesubscriptions", subscriptions.SiteSubscriptions(env))
 
 	fileServer := http.FileServer(http.Dir("./cmd/web/views/assets/"))
 	// Use the mux.Handle() function to register the file server as the handler for

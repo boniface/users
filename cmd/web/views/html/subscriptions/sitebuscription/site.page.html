@@ -63,28 +63,29 @@
                             <thead>
                             <tr>
                                 <th class="th-lg">
-                                    <a>Date
-                                        <i class="fas fa-sort ml-1"></i>
-                                    </a>
-                                </th>
-
-                                <th class="th-lg">
                                     <a href="">Site ID
                                         <i class="fas fa-sort ml-1"></i>
                                     </a>
                                 </th>
 
                                 <th class="th-lg">
-                                    <a href="">Event Name
+                                    <a href="">Sub ID
                                         <i class="fas fa-sort ml-1"></i>
                                     </a>
                                 </th>
 
                                 <th class="th-lg">
-                                    <a href="">Event Type
+                                    <a href="">Start Date
                                         <i class="fas fa-sort ml-1"></i>
                                     </a>
                                 </th>
+
+                                <th class="th-lg">
+                                    <a href="">End Date
+                                        <i class="fas fa-sort ml-1"></i>
+                                    </a>
+                                </th>
+
 
                                 <th class="th-lg">
                                     <div style="text-align: center;"><a href="">Actions</a></div>
@@ -93,15 +94,16 @@
                             </tr>
                             </thead>
                             <!--Table head Ends -->
-                            <!--Table body Starts -->
+
                             <tbody>
-                            {{ with .Rolepool }}
+                            {{ with .SiteSubs }}
                                 {{range .}}
 
                                     <tr>
-                                        <td>{{.Id}}</td>
-                                        <td>{{.RoleName}}</td>
-                                        <td>{{.Description}}</td>
+                                        <td>{{.SiteId}}</td>
+                                        <td>{{.SubscriptionId}}</td>
+                                        <td>{{.StartDate.Format "02 Jan 2006 Time: 15:04"}}</td>
+                                        <td>{{.EndDate.Format "02 Jan 2006 Time: 15:04"}}</td>
                                         <td>
                                             <div style="text-align: center;">
                                                 <a href="/roles/edit/{{.Id}}"

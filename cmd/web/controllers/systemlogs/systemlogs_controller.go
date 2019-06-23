@@ -119,7 +119,7 @@ func logsDetailsHandler(app *config.Env) http.HandlerFunc {
 		data := PageData{sites, log}
 
 		files := []string{
-			app.Path + "/systemlogs/logevents/details.page.html",
+			app.Path + "/systemlogs/logevents/site.page.html",
 			app.Path + "/base/base.page.html",
 			app.Path + "/base/navbar.page.html",
 			app.Path + "/base/sidebar.page.html",
