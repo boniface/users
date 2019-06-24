@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"net/http"
 	"users/cmd/config"
+	"users/pkg/api/sites"
 	"users/pkg/api/subscription"
 )
 
@@ -18,40 +19,26 @@ func UserSubscriptions(app *config.Env) http.Handler {
 func userSubscriptionsHanler(app *config.Env) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 
-		subs, err := subscription.GetSubscriptions()
-		if err != nil {
-			app.ServerError(w, err)
-		}
-
-		usesubs, err := subscription.GetUserSubscriptions()
+		userSubs, err := subscription.GetUserSubscriptions()
 
 		if err != nil {
 
 			app.ServerError(w, err)
 		}
 
-		siteSubs, err := subscription.GetSiteSubscriptions()
-
-		if err != nil {
-			app.ServerError(w, err)
-		}
-
-		subTypes, err := subscription.GetSubscriptionTypes()
-
+		site, err := sites.GetSites()
 		if err != nil {
 			app.ServerError(w, err)
 		}
 
 		type PageData struct {
-			Subs     []subscription.Subscription
-			SubTypes []subscription.SubscriptionTypes
-			SiteSubs []subscription.SiteSubscription
 			UserSubs []subscription.UserSubscriptions
+			Sites    []sites.Site
 		}
-		data := PageData{subs, subTypes, siteSubs, usesubs}
+		data := PageData{userSubs, site}
 
 		files := []string{
-			app.Path + "/subscriptions/subscriptions.page.html",
+			app.Path + "/subscriptions/usersubscription/usersubs.page.html",
 			app.Path + "/base/base.page.html",
 			app.Path + "/base/navbar.page.html",
 			app.Path + "/base/sidebar.page.html",

@@ -53,7 +53,7 @@ func EditPoolRoleHandler(app *config.Env) http.HandlerFunc {
 		}
 		data := PageData{role}
 		files := []string{
-			app.Path + "/roles/rolespool/edit.page.html",
+			app.Path + "/roles/rolespool/usersubs.page.html",
 			app.Path + "/base/header.page.html",
 			app.Path + "/base/base.page.html",
 			app.Path + "/base/navbar.page.html",

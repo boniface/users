@@ -96,23 +96,23 @@
                             <!--Table head Ends -->
 
                             <tbody>
-                            {{ with .Users }}
+                            {{ with .UserSubs }}
                                 {{range .}}
 
                                     <tr>
                                         <td>{{.SiteId}}</td>
-                                        <td>{{.Email}}</td>
-                                        <td>{{.ScreenName}}</td>
-                                        <td>{{.DateCreated.Format "02 Jan 2006 Time: 15:04"}}</td>
+                                        <td>{{.SubscriptionId}}</td>
+                                        <td>{{.StartDate.Format "02 Jan 2006 Time: 15:04"}}</td>
+                                        <td>{{.EndDate.Format "02 Jan 2006 Time: 15:04"}}</td>
                                         <td>
                                             <div style="text-align: center;">
-                                                <a href="/roles/edit/{{.UserId}}"
+                                                <a href="/roles/edit/{{.Id}}"
                                                    data-toggle="tooltip" data-placement="top" title="Edit"
                                                    class="btn btn-outline-blue btn-rounded btn-sm px-2">
                                                     <i class="fas fa-pencil-alt mt-0"></i>
                                                 </a>
 
-                                                <a href="./roles/details/{{.UserId}}"
+                                                <a href="./roles/details/{{.Id}}"
                                                    data-toggle="tooltip" data-placement="top" title="Details"
                                                    class="btn btn-outline-blue btn-rounded btn-sm px-2">
                                                     <i class="fas fa-info-circle mt-0"></i>
