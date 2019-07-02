@@ -9,6 +9,8 @@ import (
 
 const url = api.BASE_URL + "/sites"
 
+const urlsite = api.BASE_URL + "/profile"
+
 type Site sites.Site
 
 func GetSites() ([]Site, error) {
@@ -42,7 +44,7 @@ func GetSite(id string) (Site, error) {
 func CreateSite(entity Site) (bool, error) {
 	resp, _ := api.Rest().
 		SetBody(entity).
-		Post(url + "/create")
+		Post(urlsite + "/sitecreate")
 	if resp.IsError() {
 		return false, errors.New(resp.Status())
 	}
